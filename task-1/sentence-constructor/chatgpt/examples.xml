@@ -1,85 +1,83 @@
 <examples>
 
-  <!-- EXAMPLE 1: Low Score -->
+  <!-- EXAMPLE 1: LOWER SCORE -->
   <example>
     <user:input>
-      While I was studying in Tokyo, I realized that I had lost my passport, so I ended up missing my flight.
+      I forgot to bring my ID card, so the security guard wouldn't let me enter the building.
     </user:input>
-    <score>4</score>
+    <score>3</score>
     <score_reasons>
-      - BAD: Provided fully conjugated forms in the "Sentence Structure" section.
-      - BAD: Included multiple near-synonyms for "lose" and "miss" in the vocabulary table, repeating entries.
-      - BAD: Gave away some final particles (に, を) and partial final sentence forms.
-      - GOOD: Attempted to address multi-clause structure (cause-effect + realization).
+      - BAD: Provided the final Chinese sentence outright with all grammar markers.
+      - BAD: Used multiple synonyms for "to forget," repeating them in the vocabulary table.
+      - BAD: Gave away the placement of 了 (le) and the direct usage of 不让 (would not allow).
+      - GOOD: Attempted to show a cause-and-effect structure (“because..., so...”).
     </score_reasons>
     <assistant:output>
-      I'll walk you through building this in Japanese. Let's see how we might handle it:
+      Let’s convert your sentence into Chinese!
 
       Vocabulary Table:
-      | Japanese | Romaji  | English           |
-      |---------|---------|-------------------|
-      | パスポート | pasupooto | passport          |
-      | 失くす   | nakusu  | to lose           |
-      | 学ぶ     | manabu  | to study          |
-      | 東京     | Toukyou | Tokyo             |
-      | フライト | furaito | flight            |
-      | 逃す     | nogasu  | to miss           |
-      | 失う     | ushinau | to lose (again)   | <!-- repeated 'lose' synonym -->
-      | realize? | ???     | to realize        | <!-- no Japanese provided -->
+      | Chinese  | Pinyin  | English       |
+      |---------|---------|---------------|
+      | (blank) | (blank) | "forgot"      |
+      | (blank) | (blank) | "ID card"     |
+      | (blank) | (blank) | "security"    |
+      | (blank) | (blank) | "enter"       |
+      | (blank) | (blank) | "building"    |
+      | (blank) | (blank) | "fail to let" |
+      | (blank) | (blank) | "forget"      | <!-- repeated synonym -->
 
       Sentence Structure (problematic):
-      [Time/Context] [Subject] は [Location] に 勉強しましたが、パスポートを 失くしたことに 気づきました。それで フライトを 逃しました。
-      (Here, we used ました forms and even some particles explicitly.)
+      [因为] 我 忘记了 带身份证，所以 保安 不让我 进大楼。
+      (Here, the system gave a near-complete final sentence with 了, 保安, 不让, etc.)
 
-      Clues and Considerations:
-      - "While studying in Tokyo" can use something like [Location] で [Verb stem] ながら, or you might do another approach.
-      - Because you realized you had lost your passport, it led to missing your flight. 
-      - We can use ことに気づく (to realize a fact) for “realized that I had lost my passport,” but we have basically spelled it out.
+      Clues:
+      - We can say something like “因为... 所以...” for cause-and-effect.
+      - It's typical to use 了 after 忘记 to indicate the completed action.
+      - We also do “不让” to express the guard’s refusal.
 
-      (Overall, we revealed tense and partial final sentence, repeated synonyms, and included particles in the structure, which is not allowed.)
+      (Issue: This basically hands out the final solution and duplicates “forget” in the table.)
     </assistant:output>
   </example>
 
-  <!-- EXAMPLE 2: High Score -->
+  <!-- EXAMPLE 2: HIGH SCORE -->
   <example>
     <user:input>
-      While I was studying in Tokyo, I realized that I had lost my passport, so I ended up missing my flight.
+      I forgot to bring my ID card, so the security guard wouldn't let me enter the building.
     </user:input>
-    <score>10</score>
+    <score>10</score_reasons>
     <score_reasons>
-      - GOOD: Only dictionary forms in the vocab table, no repeated synonyms.
-      - GOOD: Abstract sentence structure with no tense or particles given away.
-      - GOOD: Detailed bullet points for multi-clause usage and cause-effect, without final solutions.
-      - GOOD: Encourages advanced expressions like “realizing,” “ending up,” but doesn't finalize the grammar forms.
+      - GOOD: Only one standard dictionary form for “to forget,” no repeated synonyms.
+      - GOOD: Abstract sentence structure with no explicit grammar markers or final forms (e.g., 了).
+      - GOOD: Complex bullet points referencing cause-and-effect, refusal, measure words, but no final sentences.
     </score_reasons>
     <assistant:output>
       Vocabulary Table:
-      | Japanese              | Romaji       | English                  |
-      |-----------------------|-------------|---------------------------|
-      | 東京（とうきょう）        | Toukyou     | Tokyo                    |
-      | 学ぶ（まなぶ）           | manabu      | to study                 |
-      | パスポート             | pasupooto   | passport                 |
-      | 失くす（なくす）          | nakusu      | to lose                  |
-      | 気づく（きづく）          | kidzuku     | to realize (notice)      |
-      | フライト               | furaito     | flight                   |
-      | 逃す（のがす）           | nogasu      | to miss (an opportunity) |
+      | Chinese        | Pinyin     | English          |
+      |---------------|------------|------------------|
+      | 忘记（忘記）    | wàngjì     | to forget        |
+      | 带（帶）        | dài        | to bring/carry   |
+      | 身份证（身份證）| shēnfènzhèng | ID card          |
+      | 保安           | bǎo'ān     | security guard   |
+      | 允许（允許）    | yǔnxǔ      | to permit/allow  |
+      | 进（進）        | jìn        | to enter         |
+      | 大楼（大樓）    | dàlóu      | building         |
 
       Sentence Structure:
-      [While/Context] [Subject/Topic] [Action 1], [Realization Clause], [Outcome Verb].
-      (No tense, no particles explicitly shown.)
+      [Cause] [Subject] [Verb phrase], [Result] [Object/Action].
+      (No tense markers like 了 or verb complements spelled out.)
 
       Clues and Considerations:
-      - You have a **time overlap**: “While I was studying.” Consider how Japanese might show simultaneous actions or states.
-      - For “I realized I had lost my passport,” think about describing the “lost passport” as a discovery (e.g., 失くしたと...).
-      - “Ended up missing my flight” suggests an unwanted outcome—there are expressions in Japanese that imply regret or inevitability (but we don’t give the final form).
-      - Particles like に or で may be needed for location or context, but we do **not** list them here.
-      - Consider linking these clauses with words that show cause-effect (e.g., から, resulting in missing your flight).
-      - Also note the difference between 逃す (to miss an opportunity) vs. 間に合わない (to not make it in time). Both could be relevant, but you can decide which nuance fits best.
+      - You have a **cause** (“I forgot my ID card”) and an **effect** (“the guard wouldn't let me enter”).
+      - In Chinese, you might choose to use “因为... 所以...” or omit “所以” if the context is clear—but don’t finalize it here.
+      - For “wouldn't let me,” consider a negative form of “to allow” (perhaps 不允许), or something that implies refusal (不让). We do not pick the final expression for you.
+      - Think about whether you need 了 to indicate a completed action in “forgot.” That’s up to you to decide context.
+      - If you want to emphasize the building as a location, you can position 大楼 differently or add a measure word (e.g., 这座大楼) but we’re not specifying it in the structure.
+      - No final punctuation or conjunction is explicitly provided. You must handle that yourself.
 
       Next Steps:
-      - Attempt to form each clause. Don’t forget that “while studying in Tokyo” might be set as a background context (possibly “(Location) で (Verb in stem) ながら” or a similar structure).
-      - If you have questions about how to express “I realized,” ask for more clues (like 〜に気づく or 〜ことに気づく).
-      - Feel free to ask about nuance differences if you’re unsure of which final expression to use for missing the flight.
+      - Try forming a cause-and-effect sentence. 
+      - Ask for hints if you’re unsure about 了 or the negative allowance form.
+      - Compare the difference between: “保安不让我进” vs. “保安不允许我进去.” 
     </assistant:output>
   </example>
 
