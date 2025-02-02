@@ -1,0 +1,84 @@
+### **Examples: Evaluating Chinese Sentence Construction**
+
+---
+
+#### **Example 1: Lower Score (3/10)**  
+**User Input:**  
+"I forgot to bring my ID card, so the security guard wouldn't let me enter the building."
+
+**Score:** 3/10  
+
+**Score Reasons:**  
+- **BAD:** Provided the final Chinese sentence outright, including grammar markers like 了 and 不让.  
+- **BAD:** Repeated synonyms for "to forget" in the vocabulary table, creating redundancy.  
+- **BAD:** Revealed the placement of 了 and the direct usage of 不让, reducing the learning challenge.  
+- **GOOD:** Attempted to demonstrate a cause-and-effect structure (“because..., so...”).
+
+**Assistant Output:**  
+Let’s convert your sentence into Chinese!  
+
+**Vocabulary Table:**  
+| Chinese  | Pinyin  | English       |  
+|----------|---------|---------------|  
+| (blank)  | (blank) | "forgot"      |  
+| (blank)  | (blank) | "ID card"     |  
+| (blank)  | (blank) | "security"    |  
+| (blank)  | (blank) | "enter"       |  
+| (blank)  | (blank) | "building"    |  
+| (blank)  | (blank) | "fail to let" |  
+| (blank)  | (blank) | "forget"      | *(repeated synonym)*  
+
+**Sentence Structure (Problematic):**  
+[因为] 我 忘记了 带身份证，所以 保安 不让我 进大楼。  
+*(Here, the system provided a near-complete final sentence with 了, 保安, 不让, etc.)*  
+
+**Clues:**  
+- Use “因为... 所以...” for cause-and-effect.  
+- 了 often follows 忘记 to indicate a completed action.  
+- 不让 can express refusal.  
+
+**Issue:** The output essentially hands out the final solution and duplicates vocabulary, reducing the learning opportunity.
+
+---
+
+#### **Example 2: High Score (10/10)**  
+**User Input:**  
+"I forgot to bring my ID card, so the security guard wouldn't let me enter the building."
+
+**Score:** 10/10  
+
+**Score Reasons:**  
+- **GOOD:** Used only one standard dictionary form for “to forget,” avoiding redundancy.  
+- **GOOD:** Provided an abstract sentence structure without explicit grammar markers or final forms (e.g., 了).  
+- **GOOD:** Included complex clues about cause-and-effect, refusal, and measure words without giving away the final sentence.  
+
+**Assistant Output:**  
+
+**Vocabulary Table:**  
+| Chinese        | Pinyin     | English          |  
+|----------------|------------|------------------|  
+| 忘记（忘記）    | wàngjì     | to forget        |  
+| 带（帶）        | dài        | to bring/carry   |  
+| 身份证（身份證）| shēnfènzhèng | ID card          |  
+| 保安           | bǎo'ān     | security guard   |  
+| 允许（允許）    | yǔnxǔ      | to permit/allow  |  
+| 进（進）        | jìn        | to enter         |  
+| 大楼（大樓）    | dàlóu      | building         |  
+
+**Sentence Structure:**  
+[Cause] [Subject] [Verb phrase], [Result] [Object/Action].  
+*(No tense markers like 了 or verb complements are explicitly provided.)*  
+
+**Clues and Considerations:**  
+1. **Cause and Effect:** Use “因为... 所以...” or omit “所以” if the context is clear.  
+2. **Refusal:** Consider negative forms like 不允许 or 不让 for “wouldn’t let.”  
+3. **Tense:** Decide if 了 is needed after 忘记 to indicate a completed action.  
+4. **Building as Location:** Optionally use a measure word (e.g., 这座大楼) or reposition 大楼 for emphasis.  
+5. **No Final Punctuation:** Handle conjunctions and punctuation independently.  
+
+**Next Steps:**  
+- Construct a cause-and-effect sentence.  
+- Request hints if unsure about 了 or negative allowance forms.  
+- Compare variations like “保安不让我进” vs. “保安不允许我进去.”  
+
+---

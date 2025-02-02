@@ -1,0 +1,78 @@
+<examples>
+
+  <example>
+    <user:input>
+      I forgot to bring my ID card, so the security guard wouldn't let me enter the building.
+    </user:input>
+    <score>3</score>
+    <score_reasons>
+      - **BAD (Over-reliance on Direct Translation):** The provided Chinese sentence is too close to a direct, word-for-word translation of the English, neglecting natural Chinese expression.  It gives away grammatical elements like 了 (le) and the specific construction 不让 (bù ràng) before the learner has a chance to grapple with them.
+      - **BAD (Prematurely Providing the Complete Sentence):**  Offering the near-complete final sentence removes the learning opportunity.  The learner isn't challenged to construct the sentence themselves, hindering their understanding of word order, grammar, and appropriate usage.
+      - **BAD (Repetitive Vocabulary Presentation):** Listing multiple synonyms for "to forget" (e.g., 忘记 and a less common variant) in the vocabulary table is confusing and unnecessary. It overloads the learner with options before they've grasped the basic form.  Focus on the most common and versatile word first.
+      - **GOOD (Partial Recognition of Cause-and-Effect):** The example correctly identifies the cause-and-effect relationship, which is a positive starting point. However, the implementation is flawed by immediately providing the "因为...所以..." structure instead of letting the learner discover it.
+      - **NEUTRAL (Insufficient Guidance on Nuances):** While the clues mention 了 and 不让, they don't explain the nuances of their usage.  When is 了 necessary? What's the difference between 不让 and other ways to express "not allowed"?  More detailed guidance is needed.
+    </score_reasons>
+    <assistant:output>
+      Let’s explore how to express this in Chinese!
+
+      Vocabulary Table:
+      | Chinese | Pinyin | English       |
+      |---------|---------|---------------|
+      | 忘记    | wàngjì  | to forget     |  | 带      | dài     | to bring/carry|
+      | 身份证   | shēnfènzhèng| ID card       |
+      | 保安    | bǎo'ān  | security guard|
+      | 进      | jìn     | to enter      |
+      | 大楼    | dàlóu   | building      |
+
+      Sentence Structure (Problematic - Avoid this in your own attempt):
+      [因为] 我 忘记了 带身份证，所以 保安 不让我 进大楼。  Clues (Overly Specific):
+      - You're right to think about cause and effect.  "因为...所以..." is one way to express this, but consider other options.
+      - 了 often indicates a completed action.  Think about whether "forgetting" is a completed action in this context.
+      - 不让 is a common way to say "not allowed," but explore other possibilities.
+
+      (Issue: This example practically gives away the answer and doesn't encourage the learner to think critically about the language.)
+    </assistant:output>
+  </example>
+
+  <example>
+    <user:input>
+      I forgot to bring my ID card, so the security guard wouldn't let me enter the building.
+    </user:input>
+    <score>10</score>
+    <score_reasons>
+      - **GOOD (Focus on Core Vocabulary):**  The vocabulary table presents the most common and relevant words without unnecessary synonyms.
+      - **GOOD (Abstract Sentence Structure):** The provided structure focuses on the logical relationship between clauses (Cause, Subject, Verb phrase, Result, Object/Action) without pre-emptively inserting specific grammar markers or a complete sentence.
+      - **GOOD (Open-Ended Clues and Considerations):** The clues encourage the learner to explore different ways to express the concepts. They raise important questions about aspect (了), negation, and stylistic choices without providing direct answers.
+      - **GOOD (Emphasis on Active Learning):** The "Next Steps" section promotes active learning by suggesting specific tasks and encouraging the learner to seek further guidance when needed.
+      - **GOOD (Focus on Nuances):** The example highlights the importance of considering nuances, such as the use of 了 and different ways to express "not allowed," prompting the learner to think critically about their choices.
+    </score_reasons>
+    <assistant:output>
+      Let’s work on expressing this in Chinese!
+
+      Vocabulary Table:
+      | Chinese | Pinyin | English          |
+      |---------|---------|------------------|
+      | 忘记    | wàngjì  | to forget        |
+      | 带      | dài     | to bring/carry   |
+      | 身份证   | shēnfènzhèng | ID card          |
+      | 保安    | bǎo'ān  | security guard   |
+      | 允许    | yǔnxǔ  | to permit/allow  |
+      | 进      | jìn     | to enter         |
+      | 大楼    | dàlóu   | building         |
+
+      Sentence Structure:
+      [Cause] [Subject] [Verb phrase], [Result] [Object/Action].  Clues and Considerations:
+      - You have a **cause** (“I forgot my ID card”) and an **effect** (“the guard wouldn't let me enter”). How can you link these ideas in Chinese?  Consider conjunctions or other ways to show this relationship.
+      - The verb "forget" can be viewed as a completed action.  How might you indicate this in Chinese?  Does it require a specific particle or change in verb form?
+      - "Wouldn't let me" involves negation.  Explore different ways to express "not allowed" or "refusal" in Chinese.  Think about the level of formality and who is doing the disallowing.  Is it a general rule, or the guard's specific decision?
+      - When talking about entering a building, do you need a measure word?  Is there a more nuanced way to describe the "building" itself?
+
+      Next Steps:
+      - Try constructing the sentence yourself, focusing on the relationship between the cause and effect.
+      - Experiment with different ways to express "not allowed" or "refusal."
+      - Think about the role of  了 and whether it's necessary in this context.
+      - If you're unsure about a specific grammar point or word choice, ask me for more guidance!  For example, you could ask: "What are the different ways to say 'not allow' in Chinese, and what are the nuances between them?" or "When is it appropriate to use 了 after a verb?"
+    </assistant:output>
+  </example>
+
+</examples>
