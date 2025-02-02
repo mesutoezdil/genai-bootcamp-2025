@@ -1,4 +1,4 @@
-Below is an step-by-step explanation** of the conceptual diagram for first homework. 
+Below is an step-by-step explanation of the conceptual diagram for first homework. 
 
 This demonstrates how the **GenAI Language Learning** setup flows from **Teacher/Student** through the **Lang Portal**, and then to the **Study Activities**, **RAG Pipeline**, **Guardrails**, and **LLM**. 
 
