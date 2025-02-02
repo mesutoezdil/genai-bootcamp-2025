@@ -1,0 +1,86 @@
+<examples>
+
+  <!-- EXAMPLE 1: Low Score -->
+  <example>
+    <user:input>
+      While I was studying in Tokyo, I realized that I had lost my passport, so I ended up missing my flight.
+    </user:input>
+    <score>4</score>
+    <score_reasons>
+      - BAD: Provided fully conjugated forms in the "Sentence Structure" section.
+      - BAD: Included multiple near-synonyms for "lose" and "miss" in the vocabulary table, repeating entries.
+      - BAD: Gave away some final particles (に, を) and partial final sentence forms.
+      - GOOD: Attempted to address multi-clause structure (cause-effect + realization).
+    </score_reasons>
+    <assistant:output>
+      I'll walk you through building this in Japanese. Let's see how we might handle it:
+
+      Vocabulary Table:
+      | Japanese | Romaji  | English           |
+      |---------|---------|-------------------|
+      | パスポート | pasupooto | passport          |
+      | 失くす   | nakusu  | to lose           |
+      | 学ぶ     | manabu  | to study          |
+      | 東京     | Toukyou | Tokyo             |
+      | フライト | furaito | flight            |
+      | 逃す     | nogasu  | to miss           |
+      | 失う     | ushinau | to lose (again)   | <!-- repeated 'lose' synonym -->
+      | realize? | ???     | to realize        | <!-- no Japanese provided -->
+
+      Sentence Structure (problematic):
+      [Time/Context] [Subject] は [Location] に 勉強しましたが、パスポートを 失くしたことに 気づきました。それで フライトを 逃しました。
+      (Here, we used ました forms and even some particles explicitly.)
+
+      Clues and Considerations:
+      - "While studying in Tokyo" can use something like [Location] で [Verb stem] ながら, or you might do another approach.
+      - Because you realized you had lost your passport, it led to missing your flight. 
+      - We can use ことに気づく (to realize a fact) for “realized that I had lost my passport,” but we have basically spelled it out.
+
+      (Overall, we revealed tense and partial final sentence, repeated synonyms, and included particles in the structure, which is not allowed.)
+    </assistant:output>
+  </example>
+
+  <!-- EXAMPLE 2: High Score -->
+  <example>
+    <user:input>
+      While I was studying in Tokyo, I realized that I had lost my passport, so I ended up missing my flight.
+    </user:input>
+    <score>10</score>
+    <score_reasons>
+      - GOOD: Only dictionary forms in the vocab table, no repeated synonyms.
+      - GOOD: Abstract sentence structure with no tense or particles given away.
+      - GOOD: Detailed bullet points for multi-clause usage and cause-effect, without final solutions.
+      - GOOD: Encourages advanced expressions like “realizing,” “ending up,” but doesn't finalize the grammar forms.
+    </score_reasons>
+    <assistant:output>
+      Vocabulary Table:
+      | Japanese              | Romaji       | English                  |
+      |-----------------------|-------------|---------------------------|
+      | 東京（とうきょう）        | Toukyou     | Tokyo                    |
+      | 学ぶ（まなぶ）           | manabu      | to study                 |
+      | パスポート             | pasupooto   | passport                 |
+      | 失くす（なくす）          | nakusu      | to lose                  |
+      | 気づく（きづく）          | kidzuku     | to realize (notice)      |
+      | フライト               | furaito     | flight                   |
+      | 逃す（のがす）           | nogasu      | to miss (an opportunity) |
+
+      Sentence Structure:
+      [While/Context] [Subject/Topic] [Action 1], [Realization Clause], [Outcome Verb].
+      (No tense, no particles explicitly shown.)
+
+      Clues and Considerations:
+      - You have a **time overlap**: “While I was studying.” Consider how Japanese might show simultaneous actions or states.
+      - For “I realized I had lost my passport,” think about describing the “lost passport” as a discovery (e.g., 失くしたと...).
+      - “Ended up missing my flight” suggests an unwanted outcome—there are expressions in Japanese that imply regret or inevitability (but we don’t give the final form).
+      - Particles like に or で may be needed for location or context, but we do **not** list them here.
+      - Consider linking these clauses with words that show cause-effect (e.g., から, resulting in missing your flight).
+      - Also note the difference between 逃す (to miss an opportunity) vs. 間に合わない (to not make it in time). Both could be relevant, but you can decide which nuance fits best.
+
+      Next Steps:
+      - Attempt to form each clause. Don’t forget that “while studying in Tokyo” might be set as a background context (possibly “(Location) で (Verb in stem) ながら” or a similar structure).
+      - If you have questions about how to express “I realized,” ask for more clues (like 〜に気づく or 〜ことに気づく).
+      - Feel free to ask about nuance differences if you’re unsure of which final expression to use for missing the flight.
+    </assistant:output>
+  </example>
+
+</examples>
