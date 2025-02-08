@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Screen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: black;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .screen-container {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+
+        .screen-title {
+            text-align: left;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+
+        .idea-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .input-label {
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .idea-input {
+            padding: 10px;
+            border: 2px solid white;
+            border-radius: 5px;
+            background: transparent;
+            color: white;
+            font-size: 1em;
+        }
+
+        .continue-btn {
+            padding: 10px 20px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+
+        .continue-btn:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="screen-container">
+        <div class="screen-title">SCREEN 1: IDEA SCREEN</div>
+        <form class="idea-form">
+            <label class="input-label">TYPE YOUR IDEA:</label>
+            <input type="text" class="idea-input" placeholder="Enter your idea here">
+            <button type="submit" class="continue-btn">Continue</button>
+        </form>
+    </div>
+</body>
+
+</html>
