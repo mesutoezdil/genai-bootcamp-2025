@@ -1,66 +1,24 @@
-## Running Ollama Third-Party Service
+# OPEA LLM Service
 
-### Choosing a Model
+This repository hosts a sample setup for running an Ollama-based LLM service (via Docker) alongside a Python FastAPI application.
 
-You can get the model_id that ollama will launch from the [Ollama Library](https://ollama.com/library).
+## 1. Prerequisites
 
-https://ollama.com/library/llama3.2
+- **Docker** (preferably Docker Engine >= 20.10)
+- **Docker Compose** (compose v2 syntax)
+- **Python 3.10+** (optional, if running outside Docker)
 
-eg. LLM_MODEL_ID="llama3.2:1b"
+## 2. Environment Variables
 
-### Getting the Host IP
+These environment variables can be set in your shell or in a `.env` file:
 
-#### Linux
+- `LLM_MODEL_ID`: Ollama model identifier (e.g., `llama3.2:1b`). Defaults to `"llama3.2:1b"`.
+- `LLM_ENDPOINT_PORT`: Port on the host mapped to Ollama’s internal port 11434. Defaults to `8008`.
+- `no_proxy`, `http_proxy`, `https_proxy`: Proxy settings, if needed.
 
-Get your IP address
-```sh
-sudo apt install net-tools
-ifconfig
-```
+## 3. How to Run
 
-Or you can try this way `$(hostname -I | awk '{print $1}')`
-
-HOST_IP=$(hostname -I | awk '{print $1}') NO_PROXY=localhost LLM_ENDPOINT_PORT=9000 LLM_MODEL_ID="llama3.2:1b" docker compose up
-
-
-### Ollama API
-
-Once the Ollama server is running we can make API calls to the ollama API
-
-https://github.com/ollama/ollama/blob/main/docs/api.md
-
-
-## Download (Pull) a model
-
-curl http://localhost:9000/api/pull -d '{
-  "model": "llama3.2:1b"
-}'
-
-## Generate a Request
-
-curl http://localhost:9000/api/generate -d '{
-  "model": "llama3.2:1b",
-  "prompt": "Why is the sky blue?"
-}'
-
-# Technical Uncertainty
-
-Q Does bridge mode mean we can only accses Ollama API with another model in the docker compose?
-
-A No, the host machine will be able to access it
-
-Q: Which port is being mapped 8008->141414
-
-In this case 8008 is the port that host machine will access. the other other in the guest port (the port of the service inside container)
-
-Q: If we pass the LLM_MODEL_Id to the ollama server will it download the model when on start?
-
-It does not appear so. The ollama CLI might be running multiple APIs so you need to call the /pull api before trying to generat text
-
-Q: Will the model be downloaded in the container? does that mean the ml model will be deleted when the container stops running?
-
-A: The model will download into the container, and vanish when the container stop running. You need to mount a local drive and there is probably more work to be done.
-
-Q: For LLM service which can text-generation it suggets it will only work with TGI/vLLM and all you have to do is have it running. Does TGI and vLLM have a stardarized API or is there code to detect which one is running? Do we have to really use Xeon or Guadi processor?
-
-vLLM, TGI (Text Generation Inference), and Ollama all offer APIs with OpenAI compatibility, so in theory they should be interchangable.
+1. **Clone this repository** (or copy these files into your project).
+2. **Build and start** via Docker Compose:
+   ```sh
+   docker compose up --build
