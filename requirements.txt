@@ -4,3 +4,4 @@ pytest
 pydantic
 pydantic-settings
 python-dotenv
+pytest
