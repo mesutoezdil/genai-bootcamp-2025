@@ -1,123 +1,53 @@
-from fastapi import HTTPException
-from comps.cores.proto.api_protocol import (
-    ChatCompletionRequest,
-    ChatCompletionResponse,
-    ChatCompletionResponseChoice,
-    ChatMessage,
-    UsageInfo
-)
-from comps.cores.mega.constants import ServiceType, ServiceRoleType
-from comps import MicroService, ServiceOrchestrator
 import os
+import requests
+from fastapi import FastAPI, Request
 
-EMBEDDING_SERVICE_HOST_IP = os.getenv("EMBEDDING_SERVICE_HOST_IP", "0.0.0.0")
-EMBEDDING_SERVICE_PORT = os.getenv("EMBEDDING_SERVICE_PORT", 6000)
-LLM_SERVICE_HOST_IP = os.getenv("LLM_SERVICE_HOST_IP", "0.0.0.0")
-LLM_SERVICE_PORT = os.getenv("LLM_SERVICE_PORT", 9000)
+app = FastAPI()
+
+OLLAMA_SERVER_HOST = os.getenv("OLLAMA_SERVER_HOST", "localhost")
+OLLAMA_SERVER_PORT = os.getenv("OLLAMA_SERVER_PORT", "11434")
+OLLAMA_API_GENERATE = f"http://{OLLAMA_SERVER_HOST}:{OLLAMA_SERVER_PORT}/api/generate"
+OLLAMA_API_PULL = f"http://{OLLAMA_SERVER_HOST}:{OLLAMA_SERVER_PORT}/api/pull"
 
 
-class ExampleService:
-    def __init__(self, host="0.0.0.0", port=8000):
-        print('hello')
-        os.environ["TELEMETRY_ENDPOINT"] = ""
-        self.host = host
-        self.port = port
-        self.endpoint = "/v1/example-service"
-        self.megaservice = ServiceOrchestrator()
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the improved OPEA LLM service!"}
 
-    def add_remote_service(self):
-        #embedding = MicroService(
-        #    name="embedding",
-        #    host=EMBEDDING_SERVICE_HOST_IP,
-        #    port=EMBEDDING_SERVICE_PORT,
-        #    endpoint="/v1/embeddings",
-        #    use_remote_service=True,
-        #    service_type=ServiceType.EMBEDDING,
-        #)
-        llm = MicroService(
-            name="llm",
-            host=LLM_SERVICE_HOST_IP,
-            port=LLM_SERVICE_PORT,
-            endpoint="/v1/chat/completions",
-            use_remote_service=True,
-            service_type=ServiceType.LLM,
-        )
-        #self.megaservice.add(embedding).add(llm)
-        #self.megaservice.flow_to(embedding, llm)
-        self.megaservice.add(llm)
-    
-    def start(self):
 
-        self.service = MicroService(
-            self.__class__.__name__,
-            service_role=ServiceRoleType.MEGASERVICE,
-            host=self.host,
-            port=self.port,
-            endpoint=self.endpoint,
-            input_datatype=ChatCompletionRequest,
-            output_datatype=ChatCompletionResponse,
-        )
+@app.post("/v1/generate")
+async def generate_text(request: Request):
+    """
+    Accepts a JSON payload containing:
+    {
+      "model": "some-model-id",
+      "prompt": "User question or message"
+      ...
+    }
+    and sends it to Ollama's /api/generate endpoint.
+    """
+    data = await request.json()
 
-        self.service.add_route(self.endpoint, self.handle_request, methods=["POST"])
+    # Make sure we include a default model ID if none is provided in the request
+    if "model" not in data:
+        data["model"] = os.getenv("LLM_MODEL_ID", "llama3.2:1b")
 
-        self.service.start()
-    async def handle_request(self, request: ChatCompletionRequest) -> ChatCompletionResponse:
-        try:
-            # Format the request for Ollama
-            ollama_request = {
-                "model": request.model or "llama3.2:1b",  # or whatever default model you're using
-                "messages": [
-                    {
-                        "role": "user",
-                        "content": request.messages  # assuming messages is a string
-                    }
-                ],
-                "stream": False  # disable streaming for now
-            }
-            
-            # Schedule the request through the orchestrator
-            result = await self.megaservice.schedule(ollama_request)
-            
-            # Extract the actual content from the response
-            if isinstance(result, tuple) and len(result) > 0:
-                llm_response = result[0].get('llm/MicroService')
-                if hasattr(llm_response, 'body'):
-                    # Read and process the response
-                    response_body = b""
-                    async for chunk in llm_response.body_iterator:
-                        response_body += chunk
-                    content = response_body.decode('utf-8')
-                else:
-                    content = "No response content available"
-            else:
-                content = "Invalid response format"
+    response = requests.post(OLLAMA_API_GENERATE, json=data)
+    return response.json()
 
-            # Create the response
-            response = ChatCompletionResponse(
-                model=request.model or "example-model",
-                choices=[
-                    ChatCompletionResponseChoice(
-                        index=0,
-                        message=ChatMessage(
-                            role="assistant",
-                            content=content
-                        ),
-                        finish_reason="stop"
-                    )
-                ],
-                usage=UsageInfo(
-                    prompt_tokens=0,
-                    completion_tokens=0,
-                    total_tokens=0
-                )
-            )
-            
-            return response
-            
-        except Exception as e:
-            # Handle any errors
-            raise HTTPException(status_code=500, detail=str(e))
 
-example = ExampleService()
-example.add_remote_service()
-example.start()
+@app.post("/v1/pull")
+async def pull_model(request: Request):
+    """
+    Pulls a new model into Ollama's cache.
+    Example request payload:
+    {
+      "model": "llama3.2:1b"
+    }
+    """
+    data = await request.json()
+    response = requests.post(OLLAMA_API_PULL, json=data)
+    return {
+        "requested_model": data.get("model"),
+        "ollama_response": response.json()
+    }
