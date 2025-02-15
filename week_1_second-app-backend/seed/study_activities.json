@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Character Writing Trainer",
+    "url": "http://localhost:8080/char-write",
+    "preview_url": "/assets/study_activities/character-writing.png",
+    "description": "Practice writing Chinese characters with proper stroke order."
+  },
+  {
+    "name": "Pinyin Pronunciation Practice",
+    "url": "http://localhost:8080/pinyin-practice",
+    "preview_url": "/assets/study_activities/pinyin-practice.png",
+    "description": "Interactive practice for correct pinyin and tones."
+  }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Basic Greetings",
+        "audio_url": "http://localhost:8080/audio/greetings.mp3",
+        "transcript": "你好，我是张老师。",
+        "questions": "What is the greeting?"
+    },
+    {
+        "title": "Ordering Food",
+        "audio_url": "http://localhost:8080/audio/ordering.mp3",
+        "transcript": "请问，这个多少钱？",
+        "questions": "What is being asked?"
+    }
+]
