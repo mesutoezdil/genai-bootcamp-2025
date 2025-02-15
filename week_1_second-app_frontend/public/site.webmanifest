@@ -1,0 +1,32 @@
+{
+  "name": "Learn Chinese",
+  "short_name": "ChineseApp",
+  "icons": [
+    {
+      "src": "/assets/icons/learn-chinese-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icons/learn-chinese-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#ffcc00",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "description": "The best app to learn Chinese with interactive lessons, vocabulary, and practice.",
+  "start_url": "/index.html",
+  "lang": "en",
+  "orientation": "portrait",
+  "categories": [
+    "education",
+    "language",
+    "learning"
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

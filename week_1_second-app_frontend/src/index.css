@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-background text-foreground font-sans;
+}
+
+@layer base {
+  :root {
+    /* Light Theme – Inspired by Chinese Traditional Colors */
+
+    /* Global Colors */
+    --background: 0, 0%, 100%;
+    /* White background */
+    --foreground: 0, 0%, 20%;
+    /* Dark text for readability */
+
+    /* Card & Popover */
+    --card: 0, 85%, 60%;
+    /* Chinese Red (#D81E06) */
+    --card-foreground: 0, 0%, 100%;
+    /* White text */
+    --popover: 0, 0%, 100%;
+    --popover-foreground: 0, 0%, 20%;
+
+    /* Brand Colors */
+    --primary: 120, 80%, 40%;
+    /* Jade Green */
+    --primary-foreground: 0, 0%, 100%;
+    --secondary: 45, 100%, 50%;
+    /* Imperial Yellow */
+    --secondary-foreground: 0, 0%, 20%;
+    --accent: 10, 80%, 50%;
+    /* Chinese Orange */
+    --accent-foreground: 0, 0%, 20%;
+
+    /* Additional Colors */
+    --muted: 0, 0%, 96%;
+    --muted-foreground: 0, 0%, 40%;
+    --destructive: 0, 75%, 55%;
+    --destructive-foreground: 0, 0%, 100%;
+    --border: 0, 0%, 85%;
+    --input: 0, 0%, 85%;
+    --ring: 10, 80%, 50%;
+
+    /* Sidebar – Light Theme */
+    --sidebar-background: 0, 0%, 97%;
+    --sidebar-foreground: 0, 0%, 20%;
+    --sidebar-primary: 120, 80%, 40%;
+    --sidebar-primary-foreground: 0, 0%, 100%;
+    --sidebar-accent: 10, 80%, 50%;
+    --sidebar-accent-foreground: 0, 0%, 20%;
+    --sidebar-border: 0, 0%, 85%;
+    --sidebar-ring: 0, 85%, 60%;
+  }
+
+  .dark {
+    /* Dark Mode – Inspired by Deep Chinese Calligraphy Aesthetics */
+
+    --background: 0, 0%, 10%;
+    --foreground: 0, 0%, 98%;
+
+    /* Cards & Popovers */
+    --card: 10, 80%, 40%;
+    --card-foreground: 0, 0%, 100%;
+    --popover: 0, 0%, 15%;
+    --popover-foreground: 0, 0%, 98%;
+
+    /* Brand Colors */
+    --primary: 120, 80%, 40%;
+    --primary-foreground: 0, 0%, 100%;
+    --secondary: 45, 100%, 50%;
+    --secondary-foreground: 0, 0%, 20%;
+    --accent: 10, 80%, 50%;
+    --accent-foreground: 0, 0%, 98%;
+
+    /* Additional Colors */
+    --muted: 0, 0%, 16%;
+    --muted-foreground: 0, 0%, 80%;
+    --destructive: 0, 75%, 55%;
+    --destructive-foreground: 0, 0%, 100%;
+    --border: 0, 0%, 30%;
+    --input: 0, 0%, 20%;
+    --ring: 0, 85%, 60%;
+
+    /* Sidebar – Dark Mode */
+    --sidebar-background: 240, 10%, 10%;
+    --sidebar-foreground: 0, 0%, 100%;
+    --sidebar-primary: 120, 80%, 40%;
+    --sidebar-primary-foreground: 0, 0%, 100%;
+    --sidebar-accent: 10, 80%, 50%;
+    --sidebar-accent-foreground: 0, 0%, 98%;
+    --sidebar-border: 0, 0%, 30%;
+    --sidebar-ring: 0, 85%, 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
