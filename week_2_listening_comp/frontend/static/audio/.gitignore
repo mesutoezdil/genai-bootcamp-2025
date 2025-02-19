@@ -1,0 +1,29 @@
+# Audio files
+*.mp3
+*.wav
+*.m4a
+*.ogg
+*.aac
+
+# Generated audio files with Chinese pinyin names
+*[一-龥]*.mp3
+*[一-龥]*.wav
+*[一-龥]*.m4a
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+
+# Generated dialogue files
+dialogue_*.mp3
+conversation_*.mp3
+question_*.mp3
+
+# HSK level specific files
+hsk*_*.mp3
+level*_*.mp3
+
+# System files
+.DS_Store
+Thumbs.db

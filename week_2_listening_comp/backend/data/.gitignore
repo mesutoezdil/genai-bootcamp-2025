@@ -1,0 +1,67 @@
+# Vector store files
+./vectorstore/*
+./vectorstore/**/*
+*.bin
+*.sqlite3
+*.milvus/    # For Milvus vector database
+
+# Stored data
+stored_questions.json
+stored_pinyin.json
+stored_characters.json
+chinese_dictionary.db
+
+# Audio files
+../../frontend/static/audio/*
+!../../frontend/static/audio/.gitkeep
+
+# Generated content
+**/generated_audio/*
+**/character_strokes/*
+**/pinyin_data/*
+
+# Cache files
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# Model files
+*.onnx
+*.pt
+*.h5
+**/models/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Environment
+.env
+.env.local
+.venv/
+env/
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Dependencies
+node_modules/
+dist/
+build/
+
+# Large media files
+*.mp3
+*.wav
+*.mp4
+*.mov
+!sample_pronunciations/*.mp3
+
+# Backup files
+*~
+*.bak
+*.backup
