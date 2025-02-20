@@ -11,12 +11,27 @@ import yaml
 dotenv.load_dotenv()
 
 def load_prompts():
-    """Load prompts from YAML file"""
-    with open('prompts.yaml', 'r', encoding='utf-8') as f:
-        return yaml.safe_load(f)
+    """
+    Load prompt templates from a YAML configuration file.
+    
+    Returns:
+        dict: A dictionary containing prompt configurations for:
+              - Sentence Generation
+              - Translation
+              - Grading
+    """
+    try:
+        with open('prompts.yaml', 'r', encoding='utf-8') as f:
+            prompts = yaml.safe_load(f)
+            return prompts
+    except Exception as e:
+        logger.error(f"Failed to load prompts.yaml: {str(e)}")
+        return {}
 
-# Setup logging
-logger = logging.getLogger('japanese_app')
+# ------------------------------------------------------------------------------
+# Logging Setup
+# ------------------------------------------------------------------------------
+logger = logging.getLogger('chinese_app')
 logger.setLevel(logging.DEBUG)
 fh = logging.FileHandler('gradio_app.log')
 fh.setLevel(logging.DEBUG)
@@ -24,14 +39,14 @@ formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
-class JapaneseWritingApp:
+class ChineseWritingApp:
     def __init__(self):
         self.client = OpenAI()
         self.vocabulary = None
         self.current_word = None
         self.current_sentence = None
         self.mocr = None
-        # Get session_id from URL like we get group_id
+        # Get session_id from environment variable or default to '1'
         self.study_session_id = os.getenv('SESSION_ID', '1')
         logger.debug(f"Using session_id: {self.study_session_id}")
         self.load_vocabulary()
@@ -66,7 +81,6 @@ class JapaneseWritingApp:
     def load_vocabulary(self):
         """Fetch vocabulary from API using group_id"""
         try:
-            # Get group_id from environment variable or use default
             group_id = os.getenv('GROUP_ID', '1')
             url = f"http://localhost:5000/api/groups/{group_id}/words/raw"
             logger.debug(f"Fetching vocabulary from: {url}")
@@ -82,8 +96,6 @@ class JapaneseWritingApp:
             logger.error(f"Error loading vocabulary: {str(e)}")
             self.vocabulary = {"words": []}
 
-
-
     def get_random_word(self):
         """Get a random word from vocabulary"""
         logger.debug("Getting random word")
@@ -94,8 +106,8 @@ class JapaneseWritingApp:
         self.current_word = random.choice(self.vocabulary['words'])
         
         return (
-            f"Kanji: {self.current_word.get('kanji', '')}",
-            f"Reading: {self.current_word.get('reading', '')}",
+            f"Character: {self.current_word.get('character', '')}",
+            f"Pinyin: {self.current_word.get('pinyin', '')}",
             f"English: {self.current_word.get('english', '')}",
             "Practice writing this word!"
         )
@@ -109,38 +121,30 @@ class JapaneseWritingApp:
                 from manga_ocr import MangaOcr
                 self.mocr = MangaOcr()
             
-            # Save the sketch as a temporary file
+            # Save the uploaded image to a temporary file
             import tempfile
             from PIL import Image
-            import base64
-            import io
-            
-            # Image is already a filepath when using type="filepath"
+            import os
             img = Image.open(image)
-            
-            # Save to temporary file
             with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
                 img.save(temp_file.name)
                 temp_path = temp_file.name
             
-            # Transcribe the image
             logger.info("Transcribing image with MangaOCR")
             transcription = self.mocr(temp_path)
             logger.debug(f"Transcription result: {transcription}")
             
-            # Clean up temporary file
-            import os
             os.unlink(temp_path)
             
             # Load prompts
             prompts = load_prompts()
             
-            # Compare transcription with target word
-            is_correct = transcription.strip() == self.current_word.get('japanese', '').strip()
+            # Compare transcription with target word (assuming target is in 'character' field)
+            is_correct = transcription.strip() == self.current_word.get('character', '').strip()
             result = "✓ Correct!" if is_correct else "✗ Incorrect"
             
             logger.debug(f"Current word: {self.current_word}")
-            logger.debug(f"Transcription: {transcription}, Target: {self.current_word.get('japanese', '')}, Is correct: {is_correct}")
+            logger.debug(f"Transcription: {transcription}, Target: {self.current_word.get('character', '')}, Is correct: {is_correct}")
             
             # Submit result to backend
             self.submit_result(is_correct)
@@ -154,28 +158,28 @@ class JapaneseWritingApp:
             return "Error processing submission", "Error: " + str(e)
 
 def create_ui():
-    app = JapaneseWritingApp()
+    app = ChineseWritingApp()
     
-    # Custom CSS for larger text
+    # Custom CSS for larger text outputs; update font for Chinese
     custom_css = """
     .large-text-output textarea {
         font-size: 40px !important;
         line-height: 1.5 !important;
-        font-family: 'Noto Sans JP', sans-serif !important;
+        font-family: 'Noto Sans SC', sans-serif !important;
     }
     """
     
     with gr.Blocks(
-        title="Japanese Word Writing Practice",
+        title="Chinese Word Writing Practice",
         css=custom_css
     ) as interface:
-        gr.Markdown("# Japanese Word Writing Practice")
+        gr.Markdown("# Chinese Word Writing Practice")
         
         with gr.Row():
             with gr.Column():
                 generate_btn = gr.Button("Get New Word", variant="primary")
-                kanji_output = gr.Textbox(
-                    label="Kanji",
+                character_output = gr.Textbox(
+                    label="Character",
                     lines=2,
                     scale=2,
                     show_label=True,
@@ -183,14 +187,12 @@ def create_ui():
                     elem_classes=["large-text-output"],
                     interactive=False
                 )
-                reading_output = gr.Textbox(label="Reading", interactive=False)
+                pinyin_output = gr.Textbox(label="Pinyin", interactive=False)
                 english_output = gr.Textbox(label="English", interactive=False)
                 instruction_output = gr.Textbox(label="Instructions", interactive=False)
             
             with gr.Column():
-                # Image upload component
                 image_input = gr.Image(label="Upload your handwritten word", type="filepath")
-
                 submit_btn = gr.Button("Submit", variant="secondary")
                 
                 with gr.Group():
@@ -203,13 +205,12 @@ def create_ui():
                         container=True,
                         elem_classes=["large-text-output"]
                     )
-
                     grade_output = gr.Textbox(label="Result")
-
+        
         # Event handlers
         generate_btn.click(
             fn=app.get_random_word,
-            outputs=[kanji_output, reading_output, english_output, instruction_output]
+            outputs=[character_output, pinyin_output, english_output, instruction_output]
         )
         
         submit_btn.click(
