@@ -1,0 +1,85 @@
+2025-02-20 14:10:01,012 - DEBUG - Retrieving vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:10:01,028 - INFO - Successfully loaded 120 Chinese words.
+2025-02-20 14:10:15,453 - DEBUG - Initiating process to select a random word and generate a sentence.
+2025-02-20 14:10:15,456 - DEBUG - Creating sentence for the word: 学习
+2025-02-20 14:10:17,789 - INFO - Generated sentence: 我每天坚持学习中文。
+2025-02-20 14:11:03,512 - DEBUG - Retrieving vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:11:03,528 - INFO - Successfully loaded 120 Chinese words.
+2025-02-20 14:11:12,345 - DEBUG - Initiating process to select a random word and generate a sentence.
+2025-02-20 14:11:12,348 - DEBUG - Creating sentence for the word: 吃饭
+2025-02-20 14:11:14,110 - INFO - Generated sentence: 我通常在中午吃饭。
+2025-02-20 14:12:26,789 - DEBUG - Initiating process to select a random word and generate a sentence.
+2025-02-20 14:12:26,790 - DEBUG - Creating sentence for the word: 去
+2025-02-20 14:12:28,567 - INFO - Generated sentence: 明天我打算去图书馆借书。
+2025-02-20 14:13:40,312 - DEBUG - Retrieving vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:13:40,327 - INFO - Successfully loaded 120 Chinese words.
+2025-02-20 14:13:47,654 - DEBUG - Initiating process to select a random word and generate a sentence.
+2025-02-20 14:13:47,657 - DEBUG - Creating sentence for the word: 起床
+2025-02-20 14:13:49,932 - INFO - Generated sentence: 我每天早上六点准时起床。
+2025-02-20 14:15:05,123 - DEBUG - Retrieving vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:15:05,137 - INFO - Successfully loaded 120 Chinese words.
+2025-02-20 14:15:14,205 - DEBUG - Initiating process to select a random word and generate a sentence.
+2025-02-20 14:15:14,208 - DEBUG - Creating sentence for the word: 等待
+2025-02-20 14:15:16,004 - INFO - Generated sentence: 他在火车站等待他的家人。
+2025-02-20 14:16:22,345 - ERROR - grade_submission error: cannot import name 'Tensor' from 'torch' (unknown location)
+2025-02-20 14:17:03,456 - DEBUG - Retrieving vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:17:03,470 - INFO - Successfully loaded 120 Chinese words.
+2025-02-20 14:17:10,987 - DEBUG - Initiating process to select a random word and generate a sentence.
+2025-02-20 14:17:10,990 - DEBUG - Creating sentence for the word: 练习
+2025-02-20 14:17:13,245 - INFO - Generated sentence: 每天练习中文能大大提高你的语言水平。
+2025-02-20 14:18:20,876 - ERROR - grade_submission error: cannot import name 'Tensor' from 'torch' (unknown location)
+2025-02-20 14:19:31,012 - DEBUG - Retrieving vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:19:31,025 - INFO - Successfully loaded 120 Chinese words.
+2025-02-20 14:19:40,789 - DEBUG - Initiating process to select a random word and generate a sentence.
+2025-02-20 14:19:40,792 - DEBUG - Creating sentence for the word: 来
+2025-02-20 14:19:43,112 - INFO - Generated sentence: 明天，我的朋友会来参加我们的聚会。
+2025-02-20 14:20:50,321 - INFO - Initializing OCR engine for Chinese characters.
+2025-02-20 14:21:03,456 - INFO - Performing OCR transcription on the uploaded image.
+2025-02-20 14:21:03,478 - DEBUG - OCR transcription result: 他正在等待下一班车。
+2025-02-20 14:21:05,678 - INFO - Requesting literal translation.
+2025-02-20 14:21:05,689 - DEBUG - Translation result: He is waiting for the next bus.
+2025-02-20 14:21:05,690 - INFO - Requesting grading and feedback.
+2025-02-20 14:21:05,690 - ERROR - grade_submission error: name 'st' is not defined
+2025-02-20 14:22:15,212 - DEBUG - Retrieving vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:22:15,227 - INFO - Successfully loaded 120 Chinese words.
+2025-02-20 14:22:22,789 - DEBUG - Initiating process to select a random word and generate a sentence.
+2025-02-20 14:22:22,792 - DEBUG - Creating sentence for the word: 骑
+2025-02-20 14:22:24,345 - INFO - Generated sentence: 我每天骑自行车上班。
+2025-02-20 14:23:30,123 - INFO - Initializing OCR engine for Chinese characters.
+2025-02-20 14:23:42,789 - INFO - Performing OCR transcription on the uploaded image.
+2025-02-20 14:23:42,812 - DEBUG - OCR transcription result: 车
+2025-02-20 14:23:42,815 - INFO - Requesting literal translation.
+2025-02-20 14:23:44,100 - DEBUG - Translation result: Car
+2025-02-20 14:23:44,101 - INFO - Requesting grading and feedback.
+2025-02-20 14:23:44,102 - DEBUG - Received grading response: Grade: B | Feedback: The student's writing is clear but does not match the target sentence.
+2025-02-20 14:23:44,103 - INFO - Grading complete: B
+2025-02-20 14:25:12,567 - DEBUG - Retrieving vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:25:12,579 - INFO - Successfully loaded 120 Chinese words.
+2025-02-20 14:25:20,345 - DEBUG - Initiating process to select a random word and generate a sentence.
+2025-02-20 14:25:20,348 - DEBUG - Creating sentence for the word: 打电话
+2025-02-20 14:25:22,678 - INFO - Generated sentence: 我每天晚上都会打电话给家人。
+2025-02-20 14:26:30,901 - DEBUG - Initializing OCR engine for Chinese characters.
+2025-02-20 14:26:42,345 - INFO - Performing OCR transcription on the uploaded image.
+2025-02-20 14:26:42,367 - DEBUG - OCR transcription result: 电话
+2025-02-20 14:26:42,370 - INFO - Requesting literal translation.
+2025-02-20 14:26:43,123 - DEBUG - Translation result: Telephone
+2025-02-20 14:26:43,125 - INFO - Requesting grading and feedback.
+2025-02-20 14:26:43,125 - DEBUG - Received grading response: Grade: C | Feedback: The submitted text does not correspond to the target word.
+2025-02-20 14:26:43,126 - INFO - Grading complete: C
+2025-02-20 14:27:55,345 - DEBUG - Attempting to submit grading result. Session ID: None, Word: {'english': 'to call', 'id': 20, 'character': '打电话', ...}
+2025-02-20 14:27:55,348 - ERROR - grade_submission error: Missing study session ID or current word.
+2025-02-20 14:27:55,349 - INFO - Grading complete: ✗ Incorrect
+2025-02-20 14:30:12,789 - DEBUG - Using session_id: None
+2025-02-20 14:30:12,793 - DEBUG - Retrieving vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:30:12,806 - INFO - Successfully loaded 120 Chinese words.
+2025-02-20 14:30:20,112 - DEBUG - Initiating process to select a random word.
+2025-02-20 14:30:22,456 - INFO - Initializing OCR engine for Chinese characters.
+2025-02-20 14:30:28,789 - INFO - Performing OCR transcription on the uploaded image.
+2025-02-20 14:30:28,811 - DEBUG - OCR transcription result: 公交
+2025-02-20 14:30:28,815 - DEBUG - Current word: {'english': 'to ride', 'id': 15, 'character': '骑', ...}
+2025-02-20 14:30:28,816 - DEBUG - OCR transcription: 公交, Target: , Correct: False
+2025-02-20 14:30:28,817 - DEBUG - Attempting to submit grading result. Session ID: None, Word: {'english': 'to ride', 'id': 15, 'character': '骑', ...}
+2025-02-20 14:30:28,818 - ERROR - grade_submission error: Missing study session ID or current word.
+2025-02-20 14:30:28,819 - INFO - Grading complete: ✗ Incorrect
+2025-02-20 14:32:06,813 - INFO - Successfully submitted review for word 149.
+2025-02-20 14:32:06,814 - INFO - Grading complete: ✗ Incorrect

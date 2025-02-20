@@ -1,0 +1,25 @@
+# Required dependencies for the Chinese Learning App
+
+# Gradio: Library for creating interactive web interfaces.
+gradio>=4.0.0
+
+# OpenAI: For integration with LLMs and making API calls.
+openai>=1.0.0
+
+# Requests: A popular library for making HTTP requests.
+requests>=2.31.0
+
+# Python Dotenv: Used for managing environment variables.
+python-dotenv
+
+# PyYAML: Used for reading and writing YAML files.
+PyYAML>=6.0.1
+
+# MangaOCR: A specialized OCR library for image text recognition.
+manga-ocr>=0.1.8
+
+# PyTorch and TorchVision: Required for running deep learning models on the CPU.
+# The line below adds an extra index URL for installing the CPU-supported versions of PyTorch and TorchVision.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.6.0+cpu
+torchvision==0.21.0+cpu

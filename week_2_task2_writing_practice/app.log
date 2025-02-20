@@ -1,0 +1,89 @@
+2025-02-20 14:10:01,012 - CHINESE_APP - Initializing Chinese Learning App...
+2025-02-20 14:10:01,028 - CHINESE_APP - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:10:01,045 - CHINESE_APP - Vocabulary response status: 200
+2025-02-20 14:10:01,046 - CHINESE_APP - Received vocabulary for group: 基础词汇
+2025-02-20 14:10:01,050 - CHINESE_APP - Entering SETUP state.
+2025-02-20 14:10:05,123 - CHINESE_APP - Generate button state: False
+2025-02-20 14:10:15,678 - CHINESE_APP - User clicked "Generate Sentence" button.
+2025-02-20 14:10:15,680 - CHINESE_APP - Selected random word: 学习 (学习, xuéxí) - English: study
+2025-02-20 14:10:17,789 - CHINESE_APP - Generating sentence for word: 学习
+2025-02-20 14:10:17,800 - CHINESE_APP - Generated sentence: 我每天坚持学习中文。
+2025-02-20 14:10:17,802 - CHINESE_APP - Updated session state: Switching to PRACTICE state.
+2025-02-20 14:10:20,123 - CHINESE_APP - Rendering PRACTICE state UI.
+2025-02-20 14:10:25,456 - CHINESE_APP - Displaying generated sentence: 我每天坚持学习中文。
+2025-02-20 14:10:30,789 - CHINESE_APP - User uploaded handwriting image.
+2025-02-20 14:10:31,012 - CHINESE_APP - Submitting image for grading.
+2025-02-20 14:10:31,050 - CHINESE_APP - Processing OCR on uploaded image.
+2025-02-20 14:10:32,345 - CHINESE_APP - OCR transcription result: 今天我学习了中文
+2025-02-20 14:10:32,400 - CHINESE_APP - Requesting literal translation.
+2025-02-20 14:10:33,012 - CHINESE_APP - Translation result: I studied Chinese today.
+2025-02-20 14:10:33,050 - CHINESE_APP - Requesting grading and feedback.
+2025-02-20 14:10:34,123 - CHINESE_APP - Grading complete: A
+2025-02-20 14:10:34,125 - CHINESE_APP - Feedback: Excellent work! Your sentence perfectly captures the intended meaning.
+2025-02-20 14:10:34,130 - CHINESE_APP - Updated session state: Switching to REVIEW state.
+2025-02-20 14:10:40,000 - CHINESE_APP - Rendering REVIEW state UI.
+2025-02-20 14:10:40,050 - CHINESE_APP - Displaying grading feedback.
+2025-02-20 14:10:45,123 - CHINESE_APP - User clicked "Next Question" button.
+2025-02-20 14:10:45,130 - CHINESE_APP - Resetting session state for next question.
+2025-02-20 14:10:45,135 - CHINESE_APP - Updated session state: Switching to SETUP state.
+2025-02-20 14:10:45,140 - CHINESE_APP - Rendering SETUP state UI.
+
+2025-02-20 14:11:01,012 - CHINESE_APP - Initializing Chinese Learning App...
+2025-02-20 14:11:01,028 - CHINESE_APP - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:11:01,045 - CHINESE_APP - Vocabulary response status: 200
+2025-02-20 14:11:01,046 - CHINESE_APP - Received vocabulary for group: 基础词汇
+2025-02-20 14:11:01,050 - CHINESE_APP - Entering SETUP state.
+2025-02-20 14:11:05,123 - CHINESE_APP - Generate button state: False
+2025-02-20 14:11:15,678 - CHINESE_APP - User clicked "Generate Sentence" button.
+2025-02-20 14:11:15,680 - CHINESE_APP - Selected random word: 吃饭 (吃饭, chīfàn) - English: eat
+2025-02-20 14:11:17,789 - CHINESE_APP - Generating sentence for word: 吃饭
+2025-02-20 14:11:17,800 - CHINESE_APP - Generated sentence: 我通常在中午吃饭。
+2025-02-20 14:11:17,802 - CHINESE_APP - Updated session state: Switching to PRACTICE state.
+2025-02-20 14:11:20,123 - CHINESE_APP - Rendering PRACTICE state UI.
+2025-02-20 14:11:25,456 - CHINESE_APP - Displaying generated sentence: 我通常在中午吃饭。
+2025-02-20 14:11:30,789 - CHINESE_APP - User uploaded handwriting image.
+2025-02-20 14:11:31,012 - CHINESE_APP - Submitting image for grading.
+2025-02-20 14:11:31,050 - CHINESE_APP - Processing OCR on uploaded image.
+2025-02-20 14:11:32,345 - CHINESE_APP - OCR transcription result: 今天我吃了米饭
+2025-02-20 14:11:32,400 - CHINESE_APP - Requesting literal translation.
+2025-02-20 14:11:33,012 - CHINESE_APP - Translation result: I ate rice today.
+2025-02-20 14:11:33,050 - CHINESE_APP - Requesting grading and feedback.
+2025-02-20 14:11:34,123 - CHINESE_APP - Grading complete: B
+2025-02-20 14:11:34,125 - CHINESE_APP - Feedback: Your sentence is clear, but some details do not fully match the prompt.
+2025-02-20 14:11:34,130 - CHINESE_APP - Updated session state: Switching to REVIEW state.
+2025-02-20 14:11:40,000 - CHINESE_APP - Rendering REVIEW state UI.
+2025-02-20 14:11:40,050 - CHINESE_APP - Displaying grading feedback.
+2025-02-20 14:11:45,123 - CHINESE_APP - User clicked "Next Question" button.
+2025-02-20 14:11:45,130 - CHINESE_APP - Resetting session state for next question.
+2025-02-20 14:11:45,135 - CHINESE_APP - Updated session state: Switching to SETUP state.
+2025-02-20 14:11:45,140 - CHINESE_APP - Rendering SETUP state UI.
+
+2025-02-20 14:12:10,012 - CHINESE_APP - Initializing Chinese Learning App...
+2025-02-20 14:12:10,028 - CHINESE_APP - Fetching vocabulary from: http://localhost:5000/api/groups/1/words/raw
+2025-02-20 14:12:10,045 - CHINESE_APP - Vocabulary response status: 200
+2025-02-20 14:12:10,046 - CHINESE_APP - Received vocabulary for group: 基础词汇
+2025-02-20 14:12:10,050 - CHINESE_APP - Entering SETUP state.
+2025-02-20 14:12:15,123 - CHINESE_APP - Generate button state: False
+2025-02-20 14:12:25,678 - CHINESE_APP - User clicked "Generate Sentence" button.
+2025-02-20 14:12:25,680 - CHINESE_APP - Selected random word: 去 (去, qù) - English: go
+2025-02-20 14:12:27,789 - CHINESE_APP - Generating sentence for word: 去
+2025-02-20 14:12:27,800 - CHINESE_APP - Generated sentence: 明天我打算去图书馆借书。
+2025-02-20 14:12:27,802 - CHINESE_APP - Updated session state: Switching to PRACTICE state.
+2025-02-20 14:12:30,123 - CHINESE_APP - Rendering PRACTICE state UI.
+2025-02-20 14:12:35,456 - CHINESE_APP - Displaying generated sentence: 明天我打算去图书馆借书。
+2025-02-20 14:12:40,789 - CHINESE_APP - User uploaded handwriting image.
+2025-02-20 14:12:41,012 - CHINESE_APP - Submitting image for grading.
+2025-02-20 14:12:41,050 - CHINESE_APP - Processing OCR on uploaded image.
+2025-02-20 14:12:42,345 - CHINESE_APP - OCR transcription result: 明天我去借书
+2025-02-20 14:12:42,400 - CHINESE_APP - Requesting literal translation.
+2025-02-20 14:12:43,012 - CHINESE_APP - Translation result: Tomorrow I will borrow books.
+2025-02-20 14:12:43,050 - CHINESE_APP - Requesting grading and feedback.
+2025-02-20 14:12:44,123 - CHINESE_APP - Grading complete: B
+2025-02-20 14:12:44,125 - CHINESE_APP - Feedback: Good attempt! However, the sentence structure needs slight refinement.
+2025-02-20 14:12:44,130 - CHINESE_APP - Updated session state: Switching to REVIEW state.
+2025-02-20 14:12:50,000 - CHINESE_APP - Rendering REVIEW state UI.
+2025-02-20 14:12:50,050 - CHINESE_APP - Displaying grading feedback.
+2025-02-20 14:12:55,123 - CHINESE_APP - User clicked "Next Question" button.
+2025-02-20 14:12:55,130 - CHINESE_APP - Resetting session state for next question.
+2025-02-20 14:12:55,135 - CHINESE_APP - Updated session state: Switching to SETUP state.
+2025-02-20 14:12:55,140 - CHINESE_APP - Rendering SETUP state UI.
