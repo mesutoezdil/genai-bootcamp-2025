@@ -1,0 +1,58 @@
+Below is an expanded and more detailed version of the original Bash script with added comments and logging statements to improve clarity and traceability:
+
+```bash
+#!/bin/bash
+# Exit immediately if any command fails
+set -e
+
+echo "Step 1: Updating package lists..."
+sudo apt-get update -y
+
+echo "Step 2: Installing required packages..."
+sudo apt-get install -y \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  wget \
+  git \
+  gnupg-agent \
+  lsb-release \
+  software-properties-common
+
+echo "Step 3: Downloading the Docker installation script..."
+wget https://raw.githubusercontent.com/opea-project/GenAIExamples/refs/heads/main/ChatQnA/docker_compose/install_docker.sh
+
+echo "Step 4: Granting execute permission to the Docker install script..."
+chmod +x install_docker.sh
+
+echo "Step 5: Running the Docker installation script..."
+./install_docker.sh
+
+echo "Step 6: Adding 'ubuntu' user to the docker group to enable non-root Docker usage..."
+sudo usermod -aG docker ubuntu
+
+echo "Step 7: Setting environment variables..."
+export RELEASE_VERSION=${opea_release_version}
+export host_ip="localhost"
+export HUGGINGFACEHUB_API_TOKEN="${huggingface_token}"
+
+echo "Step 8: Cloning the GenAIExamples repository from GitHub..."
+git clone https://github.com/opea-project/GenAIExamples.git
+
+echo "Step 9: Changing directory to the cloned repository..."
+cd GenAIExamples
+
+echo "Step 10: Checking out the specific tag matching RELEASE_VERSION (v${RELEASE_VERSION})..."
+git checkout tags/v$${RELEASE_VERSION}
+
+echo "Step 11: Navigating to the Docker Compose configuration directory for ChatQnA..."
+cd ChatQnA/docker_compose/intel/cpu/xeon/
+
+echo "Step 12: Sourcing environment variables from the set_env.sh script..."
+source set_env.sh
+
+echo "Step 13: Starting Docker Compose in detached mode using the compose.yaml file..."
+docker compose -f compose.yaml up -d
+
+echo "All steps completed successfully. The environment is now up and running."
+```

@@ -1,0 +1,47 @@
+#################################################################
+# AWS Deployment Configuration for OPEA ChatQnA Application
+#
+# This configuration file defines key parameters used in deploying
+# the OPEA ChatQnA application on AWS. Each variable is documented
+# to ensure clarity and ease of maintenance.
+#################################################################
+
+# AWS Region to deploy resources in.
+# This should be the region where your AWS account primarily operates.
+aws_region = "us-east-1"
+
+# Project name used as a prefix for all deployed resources.
+# Helps in easily identifying and organizing your AWS resources.
+project_name = "opea-chatqna"
+
+# CIDR block for the Virtual Private Cloud (VPC).
+# This range allocates IP addresses for all resources within your VPC.
+vpc_cidr_block = "10.0.0.0/16"
+
+# EC2 instance type.
+# The recommended type for ChatQnA is "m7i.4xlarge" for optimal performance.
+instance_type = "m7i.4xlarge"
+
+# Ubuntu AMI ID as per the OPEA documentation.
+# Ensure that this AMI is available in your chosen AWS region.
+ami_id = "ami-04dd23e62ed049936"
+
+# Path to your SSH public key file.
+# This key is used to create an AWS key pair for secure SSH access.
+ssh_public_key_path = "~/.ssh/id_rsa.pub"
+
+# Path to your SSH private key file.
+# Used for generating SSH configuration and for secure remote access.
+ssh_private_key_path = "~/.ssh/id_rsa"
+
+# Size of the root volume (in GB) for the EC2 instance.
+# Adjust this value based on your application’s storage requirements.
+root_volume_size = 100
+
+# Hugging Face API token for accessing models.
+# Retrieve this token from https://huggingface.co/settings/tokens.
+huggingface_token = "your-huggingface-token"
+
+# OPEA release version to deploy.
+# This should correspond to a valid release tag in the GenAIExamples repository.
+opea_release_version = "1.2"

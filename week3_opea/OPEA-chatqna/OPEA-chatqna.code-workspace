@@ -1,0 +1,33 @@
+{
+	"folders": [
+	  {
+		"name": "Main Project",
+		"path": "."
+	  },
+	  {
+		"name": "Documentation",
+		"path": "../OPEA-docsum"
+	  },
+	  {
+		"name": "Mega Service",
+		"path": "../OPEA-mega-service"
+	  }
+	],
+	"settings": {
+	  "files.exclude": {
+		"**/.git": true,
+		"**/.DS_Store": true,
+		"**/node_modules": true
+	  },
+	  "editor.formatOnSave": true,
+	  "editor.tabSize": 2
+	},
+	"extensions": {
+	  "recommendations": [
+		"ms-vscode.cpptools",
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint"
+	  ]
+	}
+  }
+  
