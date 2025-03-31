@@ -1,90 +1,119 @@
-Below is an step-by-step explanation of the conceptual diagram for first homework. 
+# GenAI Language Learning: Conceptual Diagram Explanation
 
-This demonstrates how the **GenAI Language Learning** setup flows from **Teacher/Student** through the **Lang Portal**, and then to the **Study Activities**, **RAG Pipeline**, **Guardrails**, and **LLM**. 
-
-This satisfies the **Architecting GenAI** task by giving stakeholders a clear visual of key components and interactions.
+This guide describes the **conceptual flow** of a GenAI-based language learning environment, focusing on how **Teacher** and **Student** roles interface with the **Lang Portal** and various backend modules (Study Activities, RAG Pipeline, Guardrails, LLM). By referencing the **Core 2000 Words (DB)**, the system ensures consistent vocabulary management and robust AI-driven interactions.
 
 ---
 
-## **1. User Roles and Their Entry Points**
+## Table of Contents
 
-1. **Teacher**  
-   - *Manages Words*: The Teacher updates or modifies vocabulary in the **Core 2000 Words (DB)**  
-   - Accesses these admin/management features **through** the **Lang Portal**
-
-2. **Student**  
-   - *Session*: The Student logs in to the **Lang Portal** for study sessions, quizzes, and progress tracking
-
----
-
-## **2. Core 2000 Words (DB)**
-
-- Located at the top-right, representing the **fundamental vocabulary database**  
-- **Teacher** can add, remove, or edit words via the **Lang Portal**, ensuring the database always reflects the current learning objectives  
-- Also used in **Study Activities**, so that writing and flashcard exercises reference the chosen vocabulary set
+1. [High-Level Overview](#1-high-level-overview)  
+2. [User Roles & Entry Points](#2-user-roles--entry-points)  
+3. [Core 2000 Words (DB)](#3-core-2000-words-db)  
+4. [Lang Portal (UI/UX)](#4-lang-portal-uiux)  
+5. [Study Activities](#5-study-activities)  
+6. [RAG Pipeline](#6-rag-pipeline)  
+7. [Guardrails](#7-guardrails)  
+8. [LLM (7B Model)](#8-llm-7b-model)  
+9. [Step-by-Step Workflow](#9-step-by-step-workflow)  
+10. [Conclusion](#10-conclusion)
 
 ---
 
-## **3. Lang Portal (UI/UX)**
+## 1. High-Level Overview
 
-- Acts as the **central entry point** for both Teacher and Student  
-- Manages:
-  - **Word Groups** (organizing vocabulary sets),  
-  - **Gamification** features (points, badges),  
-  - **Management** tasks for the Teacher (admin interface)  
-- Visualized in **yellow** to emphasize it’s the main user-facing component
+The conceptual diagram illustrates **how** data and interactions flow within a GenAI-enhanced language learning application. Key components include:
 
----
-
-## **4. Study Activities**
-
-- Shown in a **large dotted outline** to the right, representing various learning modules:
-  - **Writing** (grammar practice, corrections),
-  - **Immersion / Text Adventure** (interactive stories using RAG context),
-  - **Flashcards** for vocabulary drilling, etc.  
-- The **User Input** goes from these activities into the next step: the **RAG Pipeline**
+- **Teacher/Student** roles interacting via a **Lang Portal** (web interface).
+- **Core 2000 Words (DB)**: The central vocabulary database.
+- **Study Activities**: Multiple modules (Writing, Immersion, Flashcards, etc.) that engage learners.
+- **RAG Pipeline**: A retrieval-augmented generation step that fetches relevant context for the LLM.
+- **Guardrails**: Modules filtering or mitigating undesired content before or after the AI processes user input.
+- **LLM (7B)**: The large language model generating responses.
 
 ---
 
-## **5. RAG Pipeline**
+## 2. User Roles & Entry Points
 
-- **Retrieval-Augmented Generation** pipeline, taking the **User Input** from Study Activities and retrieving relevant context from a **vector database** or knowledge base  
-- Shown here as a dotted box labeled “RAG Pipeline.”  
-- Prepares or enriches prompts before they hit the **Guardrails** and the **LLM**
+### 2.1 Teacher
 
----
+- **Manages Words**: The teacher can add, remove, or modify items in the **Core 2000 Words (DB)**.
+- **Access**: Through the **Lang Portal’s** administrative features (e.g., an “Admin” or “Teacher” dashboard).
+- **Responsibilities**: Ensuring up-to-date vocabulary sets, categorizing words into relevant themes or groups.
 
-## **6. Guardrails**
+### 2.2 Student
 
-- A **safeguard module** that filters both **input** (to detect toxicity or off-topic requests) and **output** (to mitigate hallucinations or inappropriate responses)  
-- In the diagram, it’s labeled “Guardrails” with possible risk notes:
-  - *Hallucination Risk*  
-  - *Toxicity Filter*
-
----
-
-## **7. LLM (7B)**
-
-- A **7-billion-parameter Large Language Model** providing the core AI logic (could be self-hosted Mistral/Llama or a SaaS offering)  
-- The **Response** from the model loops back through the Guardrails if needed and then returns to the **Lang Portal** or **Study Activities** for the Student/Teacher to see
+- **Study Sessions**: Logs in to the **Lang Portal** to engage in various learning activities (quizzes, writing exercises, etc.).
+- **Progress Tracking**: The portal tracks the student’s performance, offering feedback and progression data.
+- **Motivation & Interaction**: Gains points or badges (gamification) to encourage consistent study habits.
 
 ---
 
-## **8. Overall Flow (Step by Step)**
+## 3. Core 2000 Words (DB)
 
-1. **Teacher** logs into the **Lang Portal**, updates or manages **Core 2000 Words (DB)** entries  
-2. **Student** logs into the **Lang Portal** and accesses various **Study Activities** (e.g., writing practice, text adventure)  
-3. The Student’s **User Input** (question, prompt, or text) goes to the **RAG Pipeline**, which retrieves relevant context from a vector database  
-4. That context, alongside the input, passes through **Guardrails** before hitting the **LLM**  
-5. The **LLM (7B)** generates a response, which again may pass through **Guardrails** (for final moderation)  
-6. The **Response** is then displayed back to the Student in the **Lang Portal** (and possibly influences points, progression, or feedback in the **Study Activities**)
+- **Primary Vocabulary Database**: Housed in a central position (often top-right in the diagram).
+- **Teacher-Centric Updates**: Whenever the teacher adds or modifies entries (word definitions, usage examples, etc.), changes propagate across the platform.
+- **Usage**: The **Study Activities** reference this database to populate writing exercises, flashcards, and other tasks with correct, up-to-date content.
 
 ---
 
-## **Conclusion**
+## 4. Lang Portal (UI/UX)
 
-- This **Conceptual Diagram** neatly addresses the **key requirements** of the task:
-  - **High-Level Structure**: Shows primary components (Portal, DB, RAG Pipeline, LLM, Guardrails)  
-  - **Roles & Responsibilities**: Differentiates Teacher and Student usage  
-  - **Data & Vocabulary Flow**: Illustrates how the Teacher updates a central DB, and how that data is used for learning  
-  - **GenAI Workflow**: Depicts RAG Pipeline, Guardrails, and LLM steps  
+- **Central Entry Point**: Both Teacher and Student begin here.
+- **Management & Gamification**:  
+  - Teacher uses an admin view to manage vocabulary, groups, or lesson settings.  
+  - Student sees interactive dashboards, achievements, and session progress.
+- **Key Features**:  
+  - Word group organization (Food, Travel, etc.).  
+  - Onboarding for new learners.  
+  - Quick links to different **Study Activities**.
+
+---
+
+## 5. Study Activities
+
+- **Modular Design**: Each activity (e.g., Writing, Flashcards, Immersive Text Adventures) is represented in the diagram as a **dotted outline** to the right.
+- **Varied Approaches**:  
+  - **Writing** – Grammar exercises, textual corrections.  
+  - **Flashcards** – Rapid vocabulary drilling (question/answer).  
+  - **Immersion / Text Adventure** – Interactive narratives that use RAG to inject context into AI-based storylines.
+- **User Input**: The Student’s typed or spoken entries in these modules proceed to the next stage: the **RAG Pipeline**.
+
+---
+
+## 6. RAG Pipeline
+
+- **Retrieval-Augmented Generation**:  
+  - Enriches user prompts with **context** from a knowledge base or vector store before sending data to the LLM.
+  - Could fetch definitions, usage examples, or relevant grammar rules from the **Core 2000 Words (DB)** or an extended knowledge source.
+- **Diagram Representation**: A **dotted box** labeled “RAG Pipeline,” bridging user input from **Study Activities** to the **Guardrails**/LLM.
+
+---
+
+## 7. Guardrails
+
+- **Input & Output Moderation**:  
+  - Intercepts user requests to check for **toxicity**, **malicious content**, or **off-topic** queries.  
+  - Filters or modifies the LLM’s responses to mitigate **hallucinations** or potentially harmful content.
+- **Diagram Label**: Noted with potential risk tags like *Hallucination Risk* or *Toxicity Filter*.
+
+---
+
+## 8. LLM (7B Model)
+
+- **Core AI Engine**: A 7-billion-parameter model (e.g., Mistral, Llama, or a hosted SaaS solution).
+- **Generative Capabilities**: Takes the enriched prompt (via RAG) and returns a reasoned or creative response.
+- **Feedback Loop**: The model’s output can be further checked by **Guardrails** before it’s displayed to the user.
+
+---
+
+## 9. Step-by-Step Workflow
+
+1. **Teacher Updates Vocabulary**: Teacher logs into the **Lang Portal**, modifies entries in the **Core 2000 Words (DB)**.
+2. **Student Session**: A Student logs in for learning activities, selecting, for example, “Writing Practice.”
+3. **User Input** → **RAG Pipeline**: The Student’s prompt or question is enriched with context from a knowledge base or the **Core 2000 Words (DB)**.
+4. **Guardrails** (Input Check): The pipeline’s combined data is screened for malicious or inappropriate content.
+5. **LLM (7B)**: Receives the validated input, generates a response.
+6. **Guardrails** (Output Check): The model’s reply is filtered or modified if needed.
+7. **Response to Student**: The final, curated message appears in the **Lang Portal’s** Study Activity, potentially updating stats or awarding points.
+
+---
