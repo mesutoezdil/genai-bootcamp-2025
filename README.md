@@ -1,137 +1,171 @@
 # 🚀 GenAI Cloud Project Bootcamp 2025
 
+Welcome to the **GenAI Cloud Project Bootcamp 2025**! This **6-week intensive** is designed for learners eager to acquire **practical AI skills** with a strong focus on **cloud computing**, **real-world AI applications**, and **AI-driven language learning**. Our overarching mission: **build AI-powered learning applications** that translate seamlessly from development to production environments.
+
+---
+
 ## 📌 Overview
-Welcome to the **GenAI Cloud Project Bootcamp 2025**! This is a **6-week hands-on bootcamp** designed to equip participants with **practical AI skills**, focusing on **real-world AI applications, cloud computing, and AI-driven language learning.**  
 
-Our goal is to **build AI-powered learning applications** while exploring the best practices for deploying **AI models at scale.**
+- **Duration**: 6 weeks  
+- **Modality**: Combination of **live classes** (YouTube), **office hours** (Zoom), and **asynchronous learning**  
+- **Target Audience**: Aspiring AI developers, educators integrating AI, and professionals aiming to deploy GenAI solutions
 
----
-
-## 🎯 **Bootcamp Goals**
-- **Understand the GenAI landscape** 🌍 – Learn key concepts, challenges, and limitations.
-- **Build AI-powered applications** 🏗️ – Develop real-world **language learning tools using AI**.
-- **Extend an existing learning platform** 🏫 – Use **AI developer tools** to improve student learning.
-- **Master AI deployment techniques** ☁️ – Optimize AI workloads for **local and cloud computing**.
+**Key Output**: By the end of this bootcamp, you’ll have **AI applications** ready to demonstrate, covering every stage from basic model usage to advanced AI deployment and scaling.
 
 ---
 
-## 📖 **Curriculum Outline**
-This bootcamp follows a **Maturity Model** approach, ensuring structured learning from **Beginner to Expert** levels.
+## 🎯 Bootcamp Goals
 
-### ✅ **Level 100 — Beginner**
-- AI-Powered Assistants & Prompt Engineering
-- Basics of AI APIs & Cloud Services
+1. **Understand the GenAI Landscape**  
+   Dive into **key concepts**, explore **challenges** (cost, ethics, limitations), and learn about the **latest GenAI breakthroughs**.
 
-### ✅ **Level 200 — Intermediate**
-- AI as a Service: Using Cloud AI Tools
-- Building AI Agents with Open-Source Models & LangChain
+2. **Build AI-Powered Applications**  
+   Architect real-world **language learning** tools using open-source models and **cloud-based** AI developer platforms.
 
-### ✅ **Level 300 — Advanced**
-- AI Model Training, Optimization & Quantization
-- Fine-tuning AI Models & Running Workloads Locally
+3. **Extend an Existing Learning Platform**  
+   Integrate next-gen **AI features** into a structured environment (e.g., `LangChain`, advanced prompt engineering).
 
-### ✅ **Level 400 — Enterprise / Expert**
-- Deploying AI Models in Production
-- Rightsizing Compute for AI Workloads (Cloud vs. AI PCs)
+4. **Master AI Deployment Techniques**  
+   Run AI workloads on **local** and **cloud** infra, refine resource usage, and adopt **best practices** in code versioning and DevOps.
 
 ---
 
-## 🏗️ **Business Scenario: AI-Powered Language Learning**
-You’ve been **hired as an AI Engineer** for a **Chinese Language Learning School** to:
-- 🏫 **Enhance student learning** between instructor-led sessions.
-- 🛠 **Develop AI-powered applications** for **immersive language learning**.
-- 🌍 **Expand the platform** to support multiple languages.
+## 📖 Curriculum Outline
+
+Organized by a **Maturity Model** approach:
+
+### ✅ **Level 100 – Beginner**
+- **AI-Powered Assistants & Prompt Engineering**  
+- Basics of **AI APIs** & **Cloud Services**
+
+### ✅ **Level 200 – Intermediate**
+- **AI as a Service**: Using Cloud AI Tools  
+- Building AI Agents with **Open-Source Models** & **LangChain**
+
+### ✅ **Level 300 – Advanced**
+- **AI Model Training** & **Optimization** (Quantization, Pruning)  
+- Fine-tuning AI Models & Running Workloads **Locally**
+
+### ✅ **Level 400 – Enterprise / Expert**
+- **Production Deployments** of AI Models  
+- Rightsizing Compute for AI (GPU/CPU, Cloud vs. AI PCs)
 
 ---
 
-## 💡 **AI-Powered Learning Applications**
-Here are some potential AI-driven applications we'll explore:
+## 🏗️ Business Scenario: AI-Powered Language Learning
 
-### 📚 **1️⃣ AI-Driven Language Learning Apps**
-- **Daily Life Visual Novel Generator** – AI-powered **conversational simulations** with characters.
-- **Chinese Sentence Constructor** – Interactive tool to help learners **translate sentences correctly**.
-- **Speech-to-Learn** – AI-powered **pronunciation trainer for Chinese vocabulary**.
-- **Subtitle-to-Vocabulary** – Extracts key **Chinese vocabulary from movie subtitles**.
+As an **AI Engineer** at a **Chinese Language Learning School**, you will:
 
-### 🔊 **2️⃣ AI-Powered Speech & Sign Language Apps**
-- **Speech-to-Text AI for Language Learning** – Real-time **pronunciation analysis**.
-- **Sign-to-Speak** – AI-powered **ASL finger-spelling recognition** via webcam.
-
-### 🔍 **3️⃣ AI Teaching Assistants**
-- **Automated Vocabulary Extraction from Text** – AI-powered **Reading Comprehension & Grammar Analysis**.
-- **LLM-based Q&A Tutor** – AI-driven chatbot for **interactive language tutoring**.
+- **Enhance student experience** with AI-assisted sessions.  
+- **Develop AI apps** enabling immersive language learning (e.g., dynamic dialogues, real-time writing corrections).  
+- **Scale globally**, supporting additional languages or extended features based on your success with Chinese.
 
 ---
 
-## 🖥️ **Technology Requirements**
-This bootcamp will use **both cloud and local compute environments**.
+## 💡 AI-Powered Learning Applications
 
-### ✅ **Cloud Accounts Needed:**
-- AWS, Azure, GCP, Intel Tiber Developer Cloud, Hugging Face, Vercel, GitHub Codespaces.
+Here are potential project ideas to **spark inspiration**:
 
-### ✅ **Local Hardware (Optional for Advanced Levels):**
-- AI PC with **NPU, iGPU, or AI Accelerators** (Optional but recommended)
-- Windows / macOS system with at least **16GB RAM, RTX 3060+ (or equivalent)**
-- WSL for Windows users
+### 📚 1️⃣ AI-Driven Language Learning Apps
+- **Daily Life Visual Novel Generator**: AI-based **conversational simulations** with in-game characters.  
+- **Chinese Sentence Constructor**: Translates or recombines phrases for grammar practice.  
+- **Speech-to-Learn**: AI-based **pronunciation trainer**.  
+- **Subtitle-to-Vocabulary**: Extracts **Chinese vocabulary** from movies or videos.
 
----
+### 🔊 2️⃣ AI-Powered Speech & Sign Language Apps
+- **Speech-to-Text**: Real-time **pronunciation analysis** or transcription.  
+- **Sign-to-Speak**: ASL **finger-spelling recognition** via webcam, bridging sign and spoken language.
 
-## 🕒 **Time Commitment**
-| Task                       | Estimated Time |
-|----------------------------|---------------|
-| **Prerequisite Knowledge** (Self-study) | **10 hours** |
-| **Cloud Account Setup** | **2 hours** |
-| **Live Class Sessions** (2 hrs/week + rewatch) | **18 hours** |
-| **Homework & Challenges** (4-10 hrs/week) | **24-60 hours** |
-| **Student Discussion & Q&A** | **6 hours** |
-| **Total Time Commitment** | **54-90 hours over 6 weeks** |
+### 🔍 3️⃣ AI Teaching Assistants
+- **Vocabulary Extraction from Text**: Automated reading comprehension, grammar highlighting.  
+- **LLM-based Q&A Tutor**: Conversational AI to handle student queries or pose interactive challenges.
 
 ---
 
-## 🏗️ **Project Requirements**
+## 🖥️ Technology Requirements
+
+We’ll use a **hybrid approach** of local and cloud compute:
+
+### ✅ Cloud Accounts
+- **AWS**, **Azure**, **GCP**, **Intel Tiber Developer Cloud**  
+- **Hugging Face**, **Vercel**, **GitHub Codespaces** (optional but highly recommended for dev environments)
+
+### ✅ Local Hardware (Advanced Levels)
+- For GPU-based local training/inference:  
+  - **Windows / macOS** with **16GB+ RAM**, **RTX 3060+** or equivalent GPU, or specialized NPUs  
+  - WSL recommended for Windows users
+
+---
+
+## 🕒 Time Commitment
+
+| Task                                         | Estimated Time      |
+|----------------------------------------------|---------------------|
+| **Prerequisite Knowledge** (Self-study)      | **10 hours**        |
+| **Cloud Account Setup**                      | **2 hours**         |
+| **Live Class Sessions** (2 hrs/week)         | **18 hours**        |
+| **Homework & Challenges** (4-10 hrs/week)    | **24-60 hours**     |
+| **Student Discussion & Q&A**                 | **6 hours**         |
+| **Total**                                    | **54-90 hours**     |
+
+---
+
+## 🏗️ Project Requirements
+
 Each participant must:
-- ✅ **Create a new GitHub repository named `gen-ai-bootcamp-2025`**
-- ❌ **Do NOT clone or fork example repositories** (`ExamProCo/free-genai-bootcamp-2025`)
-- ✅ **Use the repository to track progress & submit assignments**
+
+1. **Create a new GitHub repository** named `gen-ai-bootcamp-2025`.  
+2. **Avoid** cloning/forking example repos (e.g., `ExamProCo/free-genai-bootcamp-2025`).  
+3. Use the repo to **track your progress** (homework submissions, weekly standups, final project).
 
 ---
 
-## 📌 **Prerequisites**
-### **Strongly Recommended Self-Paced Courses**
-Before starting, we recommend completing the **GenAI Essentials Course** (Coming November 2024):
-- **Python for Beginners**
-- **PyTorch for Beginners**
-- **Tailwind CSS for Beginners**
-- **React for Beginners**
+## 📌 Prerequisites
+
+### **Recommended Self-Paced Courses** (Before Bootcamp)
+
+- **GenAI Essentials Course** (November 2024)  
+- **Python for Beginners**  
+- **PyTorch for Beginners**  
+- **Tailwind CSS for Beginners**  
+- **React for Beginners**  
 - **GitHub Foundations**
 
 ---
 
-## 🎓 **Grading & Homework Submission**
-### ✅ **How Your Work is Evaluated**
-- **Completeness** – Did you finish the required tasks?
-- **Correctness** – Is your implementation functional?
-- **Effort** – Did you attempt optional AI challenges?
-- **Documentation** – Did you clearly document your work?
+## 🎓 Grading & Homework Submission
 
-### ✅ **Submitting Weekly Standups**
-Each week, submit a **progress report** in your repository:
-- **What did you accomplish this week?** ✅
-- **What challenges did you face? How did you solve them?** 🛠️
-- **Any extra AI challenges attempted?** 🎯
+### ✅ Evaluation Criteria
 
-#### 🚀 **Achieving "Red Squad" Status**
-Students who **go beyond expectations** (e.g., advanced AI challenges, innovative implementations) will receive a **Red Squad Badge**, signifying **excellence in GenAI learning**.
+1. **Completeness**: Did you fulfill all assignments?  
+2. **Correctness**: Does your solution function as intended?  
+3. **Effort**: Did you try extra AI challenges or advanced features?  
+4. **Documentation**: Are your commits and README resources clear and detailed?
+
+### ✅ Weekly Standups
+
+In your GitHub repo, post weekly updates:
+- **Accomplishments**: Key tasks or breakthroughs from the week.  
+- **Challenges**: Issues faced, solutions tried, or unresolved blockers.  
+- **Extra AI Explorations**: Noteworthy expansions or experiments.
+
+#### 🚀 Red Squad Status
+Learners who **exceed expectations** (e.g., advanced fine-tuning, novel use cases) earn a **Red Squad Badge**, highlighting their **exemplary performance** in GenAI.
+
+---
+
+## 🎥 Live Classes & Office Hours
+
+### 🕒 Live Classes
+
+- **Every Saturday at 12 PM ET**  
+- Streamed on **YouTube (ExamPro Channel)**  
+
+### 🏛️ Office Hours
+
+- **Tuesdays & Thursdays** via **private Zoom sessions** (up to 100 students).  
+- Ideal for Q&A, project guidance, or peer discussions.
 
 ---
 
-## 🎥 **Live Classes & Office Hours**
-### 🕒 **When Are the Live Classes?**
-- **Every Saturday at 12 PM Noon ET** (Eastern Time)
-- Hosted **live on YouTube (ExamPro Channel)**
-
-### 🏛️ **Office Hours (Q&A & Study Groups)**
-- Scheduled **twice a week** on **Tuesdays & Thursdays**.
-- Hosted via **private Zoom sessions** (**limit: 100 students per session**).
-
----
+**Welcome aboard** the GenAI Cloud Project Bootcamp 2025! Through this 6-week journey, you’ll gain **hands-on AI proficiency**, from designing immersive language applications to fine-tuning models for real-world deployments. Let’s dive in and **transform** language learning with cutting-edge **GenAI**.
