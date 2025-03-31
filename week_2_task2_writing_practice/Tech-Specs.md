@@ -1,222 +1,313 @@
 # Chinese Learning App – Technical Specifications
 
-This document outlines a robust, scalable, and user-centric design for a Chinese learning application that leverages advanced AI capabilities for sentence generation, character transcription, translation, and performance grading. The app is designed to deliver an interactive learning experience while ensuring authenticity, security, and responsiveness.
+This document describes a robust and scalable **Chinese learning application** designed to generate beginner-friendly sentences in **Mandarin**, allow learners to practice their handwriting or typing skills, and provide real-time feedback. By leveraging AI components—such as a language model for sentence generation and an OCR/LLM-based grading system—the application aims to improve user engagement and learning outcomes.
 
 ---
 
-## 1. Introduction
+## Table of Contents
 
-### 1.1. Purpose & Vision
-- **Objective:**  
-  Empower users to learn Chinese effectively by generating simple, beginner-level sentences and allowing them to practice writing Chinese characters with real-time feedback.
-- **Vision:**  
-  Create a highly engaging learning tool that adapts to user performance and supports continuous improvement through intelligent AI feedback, personalized analytics, and gamification elements.
-
-### 1.2. Key Features
-- **Dynamic Sentence Generation:**  
-  Uses an AI-driven LLM to create sentences that adhere to HSK 1-2 grammar and vocabulary.
-- **Interactive Practice Mode:**  
-  Users can upload images of their handwritten or printed attempts, which are then processed by OCR and graded against the generated sentence.
-- **Comprehensive Feedback:**  
-  Provides transcription, literal translation, and detailed grading (using an S-Rank scale) along with actionable improvement suggestions.
-- **Scalable and Secure Architecture:**  
-  Ensures user data protection, real-time performance tracking, and seamless integration with external AI services.
-
----
-
-## 2. System Architecture
-
-### 2.1. Frontend Architecture
-- **Framework:**  
-  Developed as a Single-Page Application (SPA) using frameworks such as React or Vue.js.
-- **State Management:**  
-  Leverages Redux or Context API to manage state transitions across different user flows (Setup, Practice, Review).
-- **UI/UX Components:**  
-  Custom components for:
-  - **Action Buttons:** “Generate Sentence”, “Submit for Review”, “Next Question”
-  - **Upload Interface:** Image upload with drag-and-drop support and mobile responsiveness.
-  - **Feedback Panels:** Detailed display of transcription, translation, and grading.
-- **Routing & Navigation:**  
-  Although a SPA, the app uses client-side routing for smooth transitions between states.
-
-### 2.2. Backend Services
-- **API Gateway:**  
-  A centralized REST API gateway handling all client requests and coordinating between microservices.
-- **Word Bank API:**  
-  - **Endpoint:** `GET http://localhost:5000/api/groups/:id/words`  
-  - **Function:** Returns a JSON array of Chinese words with English translations, which is cached in-memory to speed up subsequent accesses.
-- **Sentence Generation Service:**  
-  - **Endpoint:** `POST http://localhost:5000/api/sentence/generate`  
-  - **Payload:** A JSON object including a randomly selected vocabulary word.  
-  - **Response:** A generated Chinese sentence using controlled HSK-level grammar.
-- **Grading System Service:**  
-  A multi-stage pipeline:
-  1. **Image Transcription:**  
-     Uses an OCR engine (e.g., MangaOCR tuned for Chinese characters) to extract text from the uploaded image.
-  2. **Literal Translation:**  
-     Calls an LLM to provide a word-for-word translation of the transcribed text.
-  3. **Performance Grading:**  
-     A dedicated LLM or algorithm compares the transcribed text with the target sentence, assigning an S-Rank grade along with detailed feedback.
-  - **Endpoint:** `POST http://localhost:5000/api/grade`
-- **Logging & Monitoring:**  
-  Integrates with tools like Sentry for error tracking and Prometheus/Grafana for performance monitoring.
-
-### 2.3. AI and Third-Party Integrations
-- **Sentence Generator LLM:**  
-  Uses a controlled prompt to ensure generated sentences are simple, correct, and appropriate for beginners.
-  - **Example Prompt:**  
-    “Generate a simple Chinese sentence using the vocabulary word: **{{word}}**. Ensure the sentence uses HSK 1-2 grammar, incorporates basic vocabulary (e.g., book, car, apple), and includes simple temporal expressions (today, tomorrow, yesterday).”
-- **OCR Engine:**  
-  Integrates MangaOCR (or a similar high-accuracy service) specifically tuned for recognizing Chinese characters in varied handwriting styles.
-- **Translation & Grading LLMs:**  
-  Two distinct pipelines (or a combined model with dual functionality) that ensure:
-  - A faithful literal translation.
-  - A robust grading mechanism providing a letter grade (S-Rank scale) and improvement tips.
+1. [Introduction & Vision](#1-introduction--vision)  
+2. [Core Features](#2-core-features)  
+3. [System Architecture](#3-system-architecture)  
+   1. [Frontend Architecture](#31-frontend-architecture)  
+   2. [Backend Services](#32-backend-services)  
+   3. [AI & Third-Party Integrations](#33-ai--third-party-integrations)  
+4. [User Workflow & States](#4-user-workflow--states)  
+   1. [Setup State](#41-setup-state)  
+   2. [Practice State](#42-practice-state)  
+   3. [Review State](#43-review-state)  
+5. [Error Handling, Security, & Scalability](#5-error-handling-security--scalability)  
+6. [API Definitions & Data Models](#6-api-definitions--data-models)  
+   1. [Vocabulary API](#61-vocabulary-api)  
+   2. [Sentence Generation API](#62-sentence-generation-api)  
+   3. [Grading System API](#63-grading-system-api)  
+7. [Future Enhancements & Roadmap](#7-future-enhancements--roadmap)  
+8. [Conclusion](#8-conclusion)
 
 ---
 
-## 3. User Flow & Page States
+## 1. Introduction & Vision
 
-The application is designed to guide the user through three main states with smooth transitions and responsive feedback.
+### 1.1 Purpose
 
-### 3.1. Setup State
-- **Display:**  
-  A clean interface featuring a central “Generate Sentence” button.
-- **Actions:**  
-  - On initialization, the app fetches the vocabulary list.
-  - When the button is pressed, a randomly selected word is used to generate a Chinese sentence via the Sentence Generation Service.
-- **Error Handling:**  
-  If the vocabulary fetch or sentence generation fails, an error modal with retry options is displayed.
+The primary goal of this application is to facilitate **effective Chinese language learning**. It accomplishes this by generating **simple, beginner-level sentences** and enabling users to **upload images or typed text** that the app can then **transcribe, translate, and grade** using advanced AI models. Through iterative practice and feedback loops, learners can steadily improve their reading and writing skills.
 
-### 3.2. Practice State
-- **Display:**  
-  - The generated Chinese sentence is prominently displayed.
-  - An upload field is available below the sentence, allowing users to submit an image of their handwritten version.
-  - A “Submit for Review” button is provided to initiate grading.
-- **Actions:**  
-  - Users capture or upload their attempt.
-  - The image is immediately previewed to confirm selection.
-  - On clicking “Submit for Review,” the app sends the image to the Grading System Service.
-- **User Guidance:**  
-  Real-time status indicators (e.g., “Uploading…”, “Processing…”) are shown to maintain user engagement.
+### 1.2 Vision
 
-### 3.3. Review State
-- **Display:**  
-  - The original Chinese sentence remains visible alongside an optional English reference.
-  - A review panel presents:
-    - **Transcription:** OCR-derived text from the uploaded image.
-    - **Literal Translation:** An AI-generated word-for-word translation.
-    - **Grading Details:**  
-      - A letter grade on an S-Rank scale.
-      - A detailed breakdown highlighting mistakes, character accuracy, and actionable tips.
-- **Actions:**  
-  - A “Next Question” button resets the interface and initiates a new practice session.
-  - Option to “Retry” the current sentence if the grading score is below a predefined threshold.
-- **Feedback Loop:**  
-  Users can optionally submit feedback on the grading accuracy, aiding continuous improvement of the AI models.
+- **Adaptive Learning Experience**  
+  Evolve the difficulty level of generated sentences based on each user’s performance trends.
+- **Accessible & Engaging**  
+  Provide interactive features that keep users motivated—ranging from real-time guidance on stroke order to gamified achievements.
+- **Scalable & Future-Proof**  
+  Employ a microservices architecture to accommodate new features (e.g., advanced conversation simulations, listening exercises) without disrupting existing services.
 
 ---
 
-## 4. Error Handling, Security, and Scalability
+## 2. Core Features
 
-### 4.1. Error Handling & User Notifications
-- **API Failures:**  
-  Clear, user-friendly error messages are displayed in case of API timeouts or failures, with automatic retries where appropriate.
-- **Input Validation:**  
-  The app validates image formats and sizes before submission, ensuring optimal performance for OCR.
-- **Fallbacks:**  
-  In case of service outages, the system provides offline modes or cached content to prevent disruption of user learning.
+1. **Dynamic Sentence Generation**  
+   - Generates Chinese sentences using HSK 1-2 grammar and vocabulary.  
+   - Incorporates simple phrases and contexts (e.g., “I went to the store today” or “I ate an apple yesterday”).
 
-### 4.2. Security Measures
-- **Data Encryption:**  
-  All data exchanges (API calls, image uploads) use HTTPS to ensure secure transmission.
-- **Authentication & Authorization:**  
-  (For future versions) Integration with OAuth or JWT-based authentication to manage user sessions and protect personal progress data.
-- **Access Controls:**  
-  Backend APIs enforce strict access control to prevent unauthorized data access or manipulation.
+2. **Interactive Practice Mode**  
+   - Allows users to upload images (handwritten or printed text) or typed submissions.  
+   - Processes the input using OCR or text analysis, evaluating correctness, vocabulary usage, and grammar.
 
-### 4.3. Scalability & Performance
-- **Caching Strategy:**  
-  - In-memory caching (e.g., Redis) for vocabulary lists and frequently used sentences.
-  - API rate limiting to protect backend services during high load.
-- **Microservices Architecture:**  
-  Each service (sentence generation, grading, OCR) is containerized (e.g., Docker) and orchestrated (e.g., Kubernetes) for horizontal scaling.
-- **Monitoring & Analytics:**  
-  Real-time analytics dashboards track user engagement, error rates, and system performance, informing proactive optimizations.
+3. **Comprehensive Feedback & Grading**  
+   - Transcribes the user’s submission and provides literal translations.  
+   - Issues a **letter grade** (S-Rank scale: S, A, B, C, etc.) reflecting the accuracy of the transcription.  
+   - Offers tips for improvement—such as stroke order corrections, vocabulary expansions, or simplified grammar clarifications.
+
+4. **Robust Architecture**  
+   - Ensures **security** through HTTPS, token-based auth, and role-based access control (if needed).  
+   - Delivers **scalability** through containerized microservices (Docker + orchestration with Kubernetes or similar).
 
 ---
 
-## 5. API Definitions & Data Models
+## 3. System Architecture
 
-### 5.1. Vocabulary API
-- **Endpoint:** `GET /api/groups/:id/words`
-- **Response Format:**
+A **hybrid** of microservices and AI components underpins this application, ensuring modularity and scalability.
+
+### 3.1 Frontend Architecture
+
+- **Framework Choice**  
+  The frontend is developed as a **Single-Page Application (SPA)** in either **React** or **Vue.js**, chosen for their large ecosystem and strong community support.
+
+- **State Management**  
+  - **Redux** (for React) or **Vuex** (for Vue) to centralize user session data, practice states, and progress tracking.  
+  - **Context API** or advanced libraries (e.g., Recoil, Pinia) can be substituted based on complexity and preference.
+
+- **UI/UX Components**  
+  - **Sentence Display**: Shows the AI-generated Chinese sentence at the top of the screen.  
+  - **Upload/Submission Panel**: Drag-and-drop or file selector for images; typed submission field for typed text.  
+  - **Feedback/Grading Panel**: Displays transcribed text, direct translations, and letter-grade feedback.
+
+- **Client-Side Routing**  
+  - Although a single-page, separate views or sections exist: “Home/Setup,” “Practice,” and “Review.”  
+  - Implements transitions that maintain app context without full-page reloads.
+
+---
+
+### 3.2 Backend Services
+
+1. **API Gateway**  
+   - Receives all incoming requests from the frontend, applying authentication and rate-limiting policies if needed.  
+   - Routes calls to the appropriate internal microservices.
+
+2. **Word Bank / Vocabulary Service**  
+   - **Endpoint**: `GET /api/groups/:id/words`  
+   - Returns curated vocabulary sets from a database, cached to reduce subsequent access latency.  
+   - May optionally track difficulty levels or HSK classification.
+
+3. **Sentence Generation Service**  
+   - **Endpoint**: `POST /api/sentence/generate`  
+   - Receives a payload specifying a target vocabulary word or theme.  
+   - Interacts with an LLM to produce an HSK 1-2 level sentence.
+
+4. **Grading System Service**  
+   A multi-stage pipeline that integrates different models and processes:
+   1. **OCR**  
+      - Processes the uploaded image with an OCR engine specialized for Chinese characters (e.g., **MangaOCR** or Tesseract tuned for Chinese).  
+   2. **Translation**  
+      - Uses an LLM or a standard translation API to produce a literal translation.  
+   3. **Comparison & Grading**  
+      - Compares the user’s transcribed text with the **target sentence**.  
+      - Outputs a letter grade (S, A, B, C, etc.) plus improvement suggestions.
+
+5. **Logging & Monitoring**  
+   - Integrates with services like **Prometheus** for monitoring metrics (CPU, memory usage) and **Grafana** for visual dashboards.  
+   - Uses **Sentry** or a similar tool for real-time error tracking and alerting.
+
+---
+
+### 3.3 AI & Third-Party Integrations
+
+- **Sentence Generator LLM**  
+  - A curated prompt ensures generated sentences adhere to the correct **HSK grammar and vocabulary scope**.
+- **OCR Engine**  
+  - **MangaOCR** or **Tesseract** (trained for Chinese) can be employed.  
+  - The engine should handle varied handwriting styles and text orientations.
+- **Translation & Grading Models**  
+  - A single advanced model or multiple specialized models can handle literal translations and grading logic.  
+  - **S-Rank** grading logic might factor in word order, character accuracy, and vocabulary completeness.
+
+---
+
+## 4. User Workflow & States
+
+The application’s UI transitions the user seamlessly through three main states: **Setup**, **Practice**, and **Review**.
+
+### 4.1 Setup State
+
+1. **Display**  
+   - A minimal screen with a “Generate Sentence” button.  
+   - Basic instructions on how to proceed.
+
+2. **Actions**  
+   - On page load, the app fetches vocabulary words from the Word Bank service and caches them.  
+   - Users press “Generate Sentence,” triggering the Sentence Generation Service to create a new Chinese sentence.
+
+3. **Error Handling**  
+   - In case of unreachable endpoints or timeouts, a modal is displayed with a “Retry” option or link to offline resources.
+
+---
+
+### 4.2 Practice State
+
+1. **Display**  
+   - Shows the newly generated Chinese sentence in large text for easy viewing.  
+   - Provides an upload control for images or a text field for typed submissions.
+
+2. **Actions**  
+   - Users can upload an **image** (handwriting sample) or type their response.  
+   - A “Submit for Review” button sends data to the Grading System service.
+
+3. **Engagement & Guidance**  
+   - The interface may show loading spinners (“Processing…”) or progress bars while the grading system is analyzing the input.  
+   - May provide **tips** or sample references (like stroke animations) if needed.
+
+---
+
+### 4.3 Review State
+
+1. **Display**  
+   - The original Chinese sentence remains visible as reference.  
+   - A **feedback panel** presents:
+     - **Transcription**: OCR-derived or typed text.  
+     - **Literal Translation**: Word-for-word breakdown of user’s text.  
+     - **Grade & Feedback**: S-rank letter grade plus a short explanation highlighting errors or missed elements.
+
+2. **Actions**  
+   - **Next Question**: Returns user to the Setup State to request a new sentence.  
+   - **Retry**: Lets the user resubmit if the grade is below a threshold (e.g., B or lower).
+
+3. **User Feedback Mechanism**  
+   - An optional button for “Report Issue” if the user suspects incorrect grading or translation.  
+   - This data can feed into a system that fine-tunes or updates the grading model for better accuracy over time.
+
+---
+
+## 5. Error Handling, Security, & Scalability
+
+### 5.1 Error Handling & Notifications
+
+- **Client-Side Alerts**  
+  - **Toast Notifications** or **Modals** inform the user about connectivity issues, server downtime, or incorrect file formats.  
+- **Retry Logic**  
+  - Automatic retries for minor network blips.  
+  - Manual “Try Again” prompts for repeated failures.
+
+### 5.2 Security Measures
+
+1. **HTTPS Everywhere**  
+   - All endpoints require SSL/TLS to protect user data.  
+2. **Authentication & Authorization**  
+   - For advanced features, implement **OAuth 2.0**, **JWT**, or a custom session token approach.  
+3. **Access Control**  
+   - Ensure roles (e.g., admin vs. standard user) or rate limiting to prevent abuse.  
+
+### 5.3 Scalability & Load Handling
+
+- **Microservices**  
+  - Containerize each service (sentence generation, grading, vocabulary) and orchestrate horizontally (Kubernetes or Docker Swarm).  
+- **Caching**  
+  - Use a caching layer (like Redis) for frequently accessed data (e.g., vocabulary sets).  
+- **Load Balancing**  
+  - Distribute traffic among multiple instances of the same service to handle high user volume.
+
+---
+
+## 6. API Definitions & Data Models
+
+### 6.1 Vocabulary API
+
+- **Endpoint**  
+  `GET /api/groups/:id/words`
+- **Sample Response**  
   ```json
   {
-    "groupId": "string",
+    "groupId": "basic-hsk1",
     "words": [
-      {
-        "chinese": "汉字",
-        "english": "character"
-      },
-      ...
+      { "chinese": "汉字", "english": "character" },
+      { "chinese": "苹果", "english": "apple" }
     ]
   }
   ```
-
-### 5.2. Sentence Generation API
-- **Endpoint:** `POST /api/sentence/generate`
-- **Request Body:**
-  ```json
-  {
-    "word": "汉字"
-  }
-  ```
-- **Response Body:**
-  ```json
-  {
-    "sentence": "今天我在书店买了一本书。",
-    "word": "汉字"
-  }
-  ```
-
-### 5.3. Grading System API
-- **Endpoint:** `POST /api/grade`
-- **Request Body:**
-  ```json
-  {
-    "targetSentence": "今天我在书店买了一本书。",
-    "uploadedImage": "<base64-encoded image data>"
-  }
-  ```
-- **Response Body:**
-  ```json
-  {
-    "transcription": "今天我在书店买了一本书",
-    "translation": "Today I bought a book at the bookstore",
-    "grade": "A",
-    "feedback": "Great accuracy! Watch out for stroke order in some characters."
-  }
-  ```
+- **Notes**  
+  - Potentially grouped by HSK level or topic-based sets (e.g., food, travel, daily routine).
 
 ---
 
-## 6. Future Enhancements & Roadmap
+### 6.2 Sentence Generation API
 
-### 6.1. Adaptive Learning & Personalization
-- **Dynamic Difficulty Adjustment:**  
-  Adapt sentence complexity based on user performance trends.
-- **Personalized Feedback:**  
-  Use machine learning to analyze common mistakes over time and tailor future feedback.
+- **Endpoint**  
+  `POST /api/sentence/generate`
+- **Request Body**  
+  ```json
+  {
+    "word": "汉字"
+  }
+  ```
+- **Response Body**  
+  ```json
+  {
+    "sentence": "今天我学了一个新汉字。",
+    "word": "汉字"
+  }
+  ```
+- **Logic**  
+  - The server prompts an LLM with a context that restricts grammar and vocabulary to HSK 1-2 levels.
 
-### 6.2. Community & Social Features
-- **Peer Reviews:**  
-  Allow users to share their attempts and receive community feedback.
-- **Gamification:**  
-  Introduce achievements, leaderboards, and streak rewards to incentivize daily practice.
+---
 
-### 6.3. Extended Language Support
-- **Multi-Dialect Support:**  
-  Explore support for traditional Chinese characters and regional dialects.
-- **Additional Learning Modules:**  
-  Extend the system to cover vocabulary drills, listening exercises, and cultural notes.
+### 6.3 Grading System API
+
+- **Endpoint**  
+  `POST /api/grade`
+- **Request Body**  
+  ```json
+  {
+    "targetSentence": "今天我学了一个新汉字。",
+    "uploadedImage": "<base64-encoded image data>"
+  }
+  ```
+- **Response Body**  
+  ```json
+  {
+    "transcription": "今天我学了一个新汉字",
+    "translation": "Today I learned a new Chinese character",
+    "grade": "S",
+    "feedback": "Excellent writing accuracy! Great job with stroke order."
+  }
+  ```
+- **Workflow**  
+  1. **OCR** extracts text from `uploadedImage`.  
+  2. LLM compares `transcription` to `targetSentence`.  
+  3. A letter grade is computed based on similarity and correctness.
+
+---
+
+## 7. Future Enhancements & Roadmap
+
+1. **Adaptive Learning & Personalization**  
+   - Dynamically adjust sentence complexity based on each user’s performance history.  
+   - Personalized tips highlighting repeated errors or frequent mistakes.
+
+2. **Gamification & Social Features**  
+   - Leaderboards, daily streaks, and user achievements to drive engagement.  
+   - Peer reviews or collaborative practice sessions.
+
+3. **Expanded Language Support**  
+   - Incorporate **Traditional Chinese** or other dialects.  
+   - Potentially extend to other languages by changing the vocabulary bank and generation model constraints.
+
+4. **Offline or Low-Bandwidth Mode**  
+   - Cache essential resources on the client side to allow continued practice in areas with limited connectivity.
+
+---
+
+## 8. Conclusion
+
+This **Chinese Learning App** combines advanced AI capabilities, a user-friendly frontend, and a robust backend architecture to deliver an immersive and effective language learning experience. By generating HSK 1-2 level sentences, providing real-time OCR-based grading, and offering structured feedback, it empowers learners to improve their Chinese reading and writing skills in an interactive, scalable environment.
+
+The roadmap for future development includes **adaptive learning**, **community features**, and **multi-dialect support**, reflecting the app’s commitment to continuous innovation and responsiveness to user needs. With a well-defined microservices architecture, developers and stakeholders can seamlessly introduce new features, enhance performance, and ensure the platform remains secure and user-focused.
