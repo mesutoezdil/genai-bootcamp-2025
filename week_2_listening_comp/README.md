@@ -1,126 +1,224 @@
 # Chinese Listening Comprehension Practice
 
-Welcome to the Chinese Listening Comprehension Practice app! This interactive platform is designed to help learners improve their listening skills through dynamic exercises and real-time feedback. The application uses cutting-edge AWS services to generate natural-sounding Mandarin audio and generate relevant practice questions, making your study sessions both engaging and effective.
+This application offers an **interactive** and **flexible** environment to enhance your **Chinese listening skills**. Combining a **Streamlit**-powered user interface with **AWS** (Polly and Bedrock) services, it generates **natural-sounding Mandarin audio** and context-specific questions, providing immediate feedback to accelerate your learning progress.
 
-## Overview
+---
 
-The Chinese Listening Comprehension Practice app leverages Streamlit for an intuitive and interactive frontend, while the backend is responsible for generating both audio and questions using AWS Polly and Bedrock services. Whether you’re a beginner or an advanced learner, this app is designed to adapt to your pace and provide a seamless learning experience.
+## Table of Contents
 
-## Key Features
+1. [Introduction & Vision](#1-introduction--vision)  
+2. [Key Features](#2-key-features)  
+3. [System Requirements](#3-system-requirements)  
+4. [Installation & Setup](#4-installation--setup)  
+5. [Running the Application](#5-running-the-application)  
+   1. [Frontend (Streamlit)](#51-frontend-streamlit)  
+   2. [Backend Processes](#52-backend-processes)  
+6. [Project Structure](#6-project-structure)  
+7. [Usage Tips](#7-usage-tips)  
+8. [Troubleshooting](#8-troubleshooting)  
+9. [Contributing](#9-contributing)  
+10. [Future Roadmap](#10-future-roadmap)
 
-- **Dynamic Audio Generation:**  
-  Uses AWS Polly and Bedrock to synthesize natural-sounding Mandarin audio for authentic listening practice.
-  
-- **Automated Question Generation:**  
-  The backend creates context-specific questions to test your understanding and retention.
-  
-- **Interactive Learning Interface:**  
-  A user-friendly Streamlit interface lets you select practice types and topics, view explanations, and receive instant feedback.
-  
-- **Session Persistence:**  
-  Your progress and generated questions are stored locally, enabling you to revisit and review past exercises.
+---
 
-## System Requirements
+## 1. Introduction & Vision
 
-- **Python Version:**  
-  Python 3.8 or newer.
+### 1.1 What Is It?
 
-- **AWS Configuration:**  
-  Valid AWS credentials must be configured on your system to access Polly and Bedrock services.  
-  *Tip: Verify your AWS CLI configuration using `aws configure` before running the app.*
+The **Chinese Listening Comprehension Practice** application provides a **dynamic** and **personalized** approach to mastering Mandarin listening skills. By generating on-the-fly audio content and questions tailored to different proficiency levels, this tool helps learners systematically improve through **focused exercises**.
 
-## Installation Guide
+### 1.2 Why Use It?
 
-1. **Clone the Repository**
+- **Adaptive Learning**: Offers exercises and practice modes that can scale from simple phrases to advanced dialogues.
+- **Immediate Feedback**: Delivers near-instant evaluations of comprehension, ensuring users learn efficiently.
+- **User-Centric Design**: Relies on a straightforward Streamlit front-end, making the experience approachable for learners at all levels.
 
-   Open your terminal and run:
-   ```sh
+---
+
+## 2. Key Features
+
+1. **Dynamic Audio Generation**  
+   - Integrates **AWS Polly** and **Amazon Bedrock** to produce human-like Mandarin audio.  
+   - Adjust speech parameters (speed, tone) for various listening drills.
+
+2. **Automated Question Generation**  
+   - The backend creates contextually relevant comprehension questions to test retention and understanding.  
+   - Supports multiple question formats (multiple choice, fill-in-the-blank, open-ended) for varied practice.
+
+3. **Interactive Streamlit Interface**  
+   - Easy-to-use GUI enables quick switching between different exercise modes (dialogues, short phrases, etc.).  
+   - Immediate results and explanations enhance the user’s learning loop.
+
+4. **Session Persistence**  
+   - Stores generated questions locally so learners can revisit previous drills and gauge progress over time.  
+   - Ensures continuity across sessions, even if the application restarts.
+
+---
+
+## 3. System Requirements
+
+- **Python Environment**  
+  - Python **3.8** or newer recommended.
+
+- **AWS Configuration**  
+  - Valid **AWS credentials** with permissions for **Amazon Polly** and **Bedrock**.  
+  - Confirm credentials by running `aws configure` and checking your AWS CLI profile.
+
+- **Internet Connectivity**  
+  - Required to connect to AWS services and fetch any remote libraries or dependencies.
+
+---
+
+## 4. Installation & Setup
+
+### 4.1 Clone the Repository
+
+1. Open a terminal in your desired installation directory.
+2. Run:
+   ```bash
    git clone <repository-url>
    cd listening-comp-main
    ```
 
-2. **Backend Dependencies**
+### 4.2 Backend Dependencies
 
-   Navigate to the backend directory and install dependencies:
-   ```sh
+1. Navigate to the **backend** folder:
+   ```bash
    cd backend
+   ```
+2. Install the necessary Python packages:
+   ```bash
    pip install -r requirements.txt
+   ```
+3. Return to the root folder:
+   ```bash
    cd ..
    ```
 
-3. **Frontend Dependencies**
+### 4.3 Frontend Dependencies
 
-   Install Streamlit (if not already installed):
-   ```sh
-   pip install streamlit
-   ```
+Install **Streamlit** and any additional libraries (if not already installed):
 
-## Running the Application
+```bash
+pip install streamlit
+```
 
-### Starting the Frontend
+---
 
-Launch the interactive learning interface by running:
-```sh
+## 5. Running the Application
+
+### 5.1 Frontend (Streamlit)
+
+Launch the user-friendly **Streamlit** interface:
+
+```bash
 streamlit run frontend/main.py
 ```
-This command opens the Streamlit app in your default web browser, where you can start practicing listening comprehension immediately.
 
-### Running the Backend
+Upon execution, Streamlit will open a new tab in your default web browser, displaying the listening comprehension app interface. Users can immediately select topics, exercise types, and begin practicing.
 
-If you need to run or debug backend processes separately, execute:
-```sh
+### 5.2 Backend Processes
+
+If necessary (for debugging or separate testing), run:
+
+```bash
 python backend/main.py
 ```
-This ensures that all necessary services for audio and question generation are active.
+This command starts the backend services that handle **audio generation** and **question creation**. If you don’t need to debug backend processes, the Streamlit app typically orchestrates them automatically.
 
-## Project Structure
+---
+
+## 6. Project Structure
+
+A suggested layout for logical organization of files and directories:
 
 ```
 listening-comp-main/
 ├── backend/
 │   ├── data/
-│   │   └── stored_questions.json   # Persistent storage for generated questions
-│   ├── audio_generator.py          # Audio synthesis using AWS services
-│   ├── question_generator.py       # Question creation logic
-│   ├── main.py                     # Backend entry point
-│   └── requirements.txt            # Python dependencies for the backend
+│   │   └── stored_questions.json   # Persistent storage of previously generated questions
+│   ├── audio_generator.py          # AWS Polly / Bedrock-based audio generation logic
+│   ├── question_generator.py       # Logic for dynamic question creation
+│   ├── main.py                     # Backend entry point orchestrating generation tasks
+│   └── requirements.txt            # Python dependencies for backend services
 ├── frontend/
 │   ├── main.py                     # Streamlit app entry point
-│   └── assets/                     # Images, icons, or other static assets
-└── README.md                       # This file
+│   └── assets/                     # Static files (icons, images, CSS, etc.)
+└── README.md                       # Main documentation
 ```
 
-## Usage and Tips
+> **Note**: You can adapt this structure to your own project style – for example, placing `assets/` in the `backend` folder if the media files relate to data generation.
 
-- **Selecting Practice Mode:**  
-  Choose between dialogue-based or phrase matching exercises to target different listening skills.
+---
 
-- **Review Past Exercises:**  
-  Use the sidebar to access your saved questions and review feedback to monitor your progress.
+## 7. Usage Tips
 
-- **Audio Generation:**  
-  If audio generation fails, ensure your AWS credentials are correctly configured and that your system meets the requirements.
+1. **Choosing a Practice Mode**  
+   - **Dialogue Mode**: Offers longer audio segments simulating short conversations. Best for advanced learners focusing on context clues.  
+   - **Phrase Matching**: Targets shorter phrases or vocabulary sets, ideal for beginners building fundamental listening skills.
 
-## Troubleshooting
+2. **Reviewing Past Exercises**  
+   - Use the sidebar in the Streamlit app to revisit previously generated questions and your recorded answers.  
+   - Compare your new results to old ones for an at-a-glance progress snapshot.
 
-- **Audio File Not Generated:**  
-  Verify that the AWS services are reachable and your credentials are valid. Check the logs printed in the terminal for detailed error messages.
+3. **AWS Considerations**  
+   - If you experience slow audio generation or question creation, check your network connection or AWS region settings.  
+   - Some AWS services may have region-specific constraints for new features like Amazon Bedrock.
 
-- **Streamlit App Issues:**  
-  Ensure that all frontend dependencies are installed. If you encounter issues, try running:
-  ```sh
+---
+
+## 8. Troubleshooting
+
+### 8.1 Audio File Not Generated
+
+- **Check AWS Connectivity**  
+  Ensure your AWS credentials are correctly configured and have the required permissions (`Polly:*`, `Bedrock:*`).  
+- **Inspect Logs**  
+  Both the backend and Streamlit console logs may display error messages. Look for timeouts, credential errors, or missing libraries.
+
+### 8.2 Streamlit App Issues
+
+- **Dependency Mismatch**  
+  If the app fails to load, verify that you installed **Streamlit** and other packages with the same Python environment.  
+- **Update Streamlit**  
+  Try running:
+  ```bash
   pip install --upgrade streamlit
   ```
+  to get the latest bug fixes and features.
 
-- **General Debugging:**  
-  The app includes logging that writes detailed error messages to the console. Review these messages to help diagnose any issues.
+### 8.3 General Debugging
 
-## Contributing
+- **Logs & Console Output**  
+  Detailed logs are printed to the terminal. Always check the console for errors or stack traces.  
+- **Verbose Mode**  
+  You can add verbose flags or logging levels in your Python code to reveal more detailed error messages.
 
-We welcome contributions to improve the app further! If you’d like to contribute, please:
-- Fork the repository.
-- Create a new branch for your feature or bug fix.
-- Ensure your code follows the existing style and add tests if possible.
-- Submit a pull request with a clear description of your changes.
+---
 
-For any major changes, please open an issue first to discuss what you would like to change.
+## 9. Contributing
+
+We welcome contributions to further enhance this learning tool. To contribute:
+
+1. **Fork** the repository.  
+2. **Create a branch** for your feature or bug fix.  
+3. **Add or modify tests** in your branch if applicable.  
+4. **Open a Pull Request** with a clear description of your changes, screenshots, or logs demonstrating the feature or fix.
+
+For major changes, please open an **issue** first to discuss the proposed feature with the community and maintainers.
+
+---
+
+## 10. Future Roadmap
+
+1. **Customization of Audio Parameters**  
+   - Expose more control (e.g., pitch, prosody, speaker selection) to enrich listening practice for different accents and speeds.
+
+2. **Adaptive Difficulty**  
+   - Dynamically adjust audio complexity and question depth based on user performance, gradually increasing the challenge.
+
+3. **Community & Sharing**  
+   - Implement user profiles, leaderboards, or shared practice sessions for collaborative learning.
+
+4. **Expanded Format Support**  
+   - Add video-based comprehension tasks or incorporate additional languages for bilingual or multilingual learning experiences.
