@@ -1,24 +1,63 @@
-## Setting up the database
+# Database & Backend Setup Guide
 
-```sh
+This document details how to **initialize** and **seed** the database, manage cleanup, and run the backend API (Flask) for your application.
+
+---
+
+## 1. Database Initialization
+
+### Step 1: Invoke DB Init
+
+From the project root, run:
+
+```bash
 invoke init-db
 ```
 
-This will do the following:
-- create the words.db (Sqlite3 database)
-- run the migrations found in `seeds/`
-- run the seed data found in `seed/`
+**What this does**:
+1. **Creates** the `words.db` SQLite3 database if it doesn’t already exist.
+2. **Runs Migrations** located under the `seeds/` directory (or wherever your migration scripts are stored).
+3. **Seeds Data** by importing sample or production data as specified in `lib/db.py`.
 
-Please note that migrations and seed data is manually coded to be imported in the `lib/db.py`. So you need to modify this code if you want to import other seed data.
+> **Note**: If you plan to add new seed files, ensure you **update** the logic in `lib/db.py` or your tasks to include them.
 
-## Clearing the database
+### Step 2: Verify Database
 
-Simply delete the `words.db` to clear entire database.
+- Check for the new `words.db` file in your project directory.
+- Optionally use a SQLite browser (e.g., [DB Browser for SQLite](https://sqlitebrowser.org/)) or `sqlite3 words.db` to confirm tables and records.
 
-## Running the backend api
+---
 
-```sh
-python app.py 
+## 2. Clearing the Database
+
+To entirely **wipe** the data, simply **delete** the `words.db` file:
+
+```bash
+rm words.db
 ```
 
-This should start the flask app on port `5000`
+**Result**:  
+All existing schemas, tables, and data are removed. You can re-run `invoke init-db` to recreate everything from scratch.
+
+> **Warning**: Deletion is permanent, so ensure you have backups or version control if this database is important.
+
+---
+
+## 3. Running the Backend API
+
+Once the database is set up, start the **Flask** application with:
+
+```bash
+python app.py
+```
+
+### Expected Behavior
+
+- The **Flask server** typically runs on port **5000** by default.  
+- Open your browser at [http://localhost:5000](http://localhost:5000) (or use an API client like **Postman** or **cURL**) to test endpoints.
+
+### Custom Configuration
+
+- **Environment Variables**: You may have settings like `FLASK_ENV=development` or `DB_PATH=words.db`.  
+- **Port Changes**: If needed, adjust `app.run(port=...)` in `app.py` or set environment variables.
+
