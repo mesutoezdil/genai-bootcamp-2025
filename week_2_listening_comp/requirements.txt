@@ -10,11 +10,14 @@ requests>=2.31.0
 # Audio Processing
 pydub>=0.25.1
 soundfile>=0.12.1
+ffmpeg-python>=0.2.0
+openai-whisper==20231117
 
 # Chinese Language Processing
 pypinyin>=0.49.0
 jieba>=0.42.1
 zhon>=2.0.2
+deep-translator>=1.11.4
 
 # Data Processing
 pandas>=2.1.4
