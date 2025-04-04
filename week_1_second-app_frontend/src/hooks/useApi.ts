@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from 'react-query'
+import { useQuery, useMutation, useQueryClient, UseQueryResult, UseMutationResult } from 'react-query'
 
 interface UseApiOptions<T> {
   queryKey: string | string[]
@@ -21,7 +21,7 @@ export function useApi<T>({
   onSuccess,
   onError,
   enabled = true,
-}: UseApiOptions<T>) {
+}: UseApiOptions<T>): UseQueryResult<T, Error> {
   return useQuery({
     queryKey,
     queryFn,
@@ -36,12 +36,12 @@ export function useApiMutation<T, U = unknown>({
   onSuccess,
   onError,
   invalidateQueries = [],
-}: UseMutationOptions<T, U>) {
+}: UseMutationOptions<T, U>): UseMutationResult<T, Error, U> {
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn,
-    onSuccess: (data) => {
+    onSuccess: (data: T) => {
       // Invalidate queries if needed
       invalidateQueries.forEach((queryKey) => {
         queryClient.invalidateQueries(queryKey)
