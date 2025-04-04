@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat QA System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-container">
+            <div class="messages" id="messages"></div>
+            <div class="input-container">
+                <input type="text" id="question" class="input-field" placeholder="Type your question..." autocomplete="off">
+                <button id="send" class="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let conversationId = null;
+        const messagesDiv = document.getElementById('messages');
+        const questionInput = document.getElementById('question');
+        const sendButton = document.getElementById('send');
+
+        // Create a new conversation when the page loads
+        fetch('/conversations', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                conversationId = data.conversation_id;
+            });
+
+        function addMessage(content, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'assistant-message'}`;
+            messageDiv.textContent = content;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        async function sendQuestion() {
+            const question = questionInput.value.trim();
+            if (!question) return;
+
+            // Disable input and button
+            questionInput.disabled = true;
+            sendButton.disabled = true;
+
+            // Add user message
+            addMessage(question, true);
+            questionInput.value = '';
+
+            try {
+                const response = await fetch(`/conversations/${conversationId}/question`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to get answer');
+                }
+
+                const data = await response.json();
+                addMessage(data.answer, false);
+            } catch (error) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error';
+                errorDiv.textContent = 'Failed to get answer. Please try again.';
+                messagesDiv.appendChild(errorDiv);
+            } finally {
+                // Re-enable input and button
+                questionInput.disabled = false;
+                sendButton.disabled = false;
+                questionInput.focus();
+            }
+        }
+
+        // Event listeners
+        sendButton.addEventListener('click', sendQuestion);
+        questionInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendQuestion();
+            }
+        });
+    </script>
+</body>
+</html>
