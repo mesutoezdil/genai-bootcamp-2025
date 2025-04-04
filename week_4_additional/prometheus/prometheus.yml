@@ -1,0 +1,31 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'api-gateway'
+    static_configs:
+      - targets: ['api-gateway:3000']
+
+  - job_name: 'learning-service'
+    static_configs:
+      - targets: ['learning-service:3001']
+
+  - job_name: 'analytics-service'
+    static_configs:
+      - targets: ['analytics-service:3002']
+
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres:5432']
+
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+
+rule_files:
+  - "rules/*.yml"
