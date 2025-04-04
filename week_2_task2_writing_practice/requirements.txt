@@ -21,5 +21,5 @@ manga-ocr>=0.1.8
 # PyTorch and TorchVision: Required for running deep learning models on the CPU.
 # The line below adds an extra index URL for installing the CPU-supported versions of PyTorch and TorchVision.
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.6.0+cpu
-torchvision==0.21.0+cpu
+torch>=2.0.0
+torchvision>=0.15.0
