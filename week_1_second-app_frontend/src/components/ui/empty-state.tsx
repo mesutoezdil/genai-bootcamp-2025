@@ -1,48 +1,51 @@
 import React from 'react'
-import { LucideIcon } from 'lucide-react'
+import { AlertTriangle, FileQuestion } from 'lucide-react'
 
 interface EmptyStateProps {
-  icon?: LucideIcon
-  title: string
-  description: string
-  action?: React.ReactNode
+  title?: string
+  message?: string
+  icon?: 'error' | 'empty'
   className?: string
+  children?: React.ReactNode
 }
 
 export function EmptyState({
-  icon: Icon,
-  title,
-  description,
-  action,
+  title = 'No results found',
+  message = 'Try adjusting your search or filters.',
+  icon = 'empty',
   className = '',
-}: EmptyStateProps) {
+  children,
+}: EmptyStateProps): JSX.Element {
+  const Icon = icon === 'error' ? AlertTriangle : FileQuestion
+
   return (
     <div
-      className={`flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center ${className}`}
+      className={`flex min-h-[200px] flex-col items-center justify-center space-y-4 rounded-lg border border-dashed p-8 text-center ${className}`}
     >
-      {Icon && <Icon className="mb-4 h-12 w-12 text-muted-foreground" />}
-      <h3 className="mb-2 text-2xl font-semibold">{title}</h3>
-      <p className="mb-4 text-sm text-muted-foreground">{description}</p>
-      {action}
+      <Icon className="h-12 w-12 text-muted-foreground" />
+      <div>
+        <h3 className="mb-1 text-lg font-medium">{title}</h3>
+        <p className="text-sm text-muted-foreground">{message}</p>
+      </div>
+      {children}
     </div>
   )
 }
 
-export function TableEmptyState({
-  icon: Icon,
-  title,
-  description,
-  action,
+export function ErrorState({
+  title = 'Something went wrong',
+  message = 'There was an error loading the data. Please try again.',
   className = '',
-}: EmptyStateProps) {
+  children,
+}: EmptyStateProps): JSX.Element {
   return (
-    <div
-      className={`flex min-h-[200px] flex-col items-center justify-center p-4 text-center ${className}`}
+    <EmptyState
+      title={title}
+      message={message}
+      icon="error"
+      className={className}
     >
-      {Icon && <Icon className="mb-2 h-8 w-8 text-muted-foreground" />}
-      <h3 className="mb-1 text-lg font-semibold">{title}</h3>
-      <p className="mb-4 text-sm text-muted-foreground">{description}</p>
-      {action}
-    </div>
+      {children}
+    </EmptyState>
   )
 }

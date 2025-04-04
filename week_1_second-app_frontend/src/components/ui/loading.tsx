@@ -7,7 +7,7 @@ interface LoadingProps {
   text?: string
 }
 
-export function Loading({ size = 24, className = '', text }: LoadingProps) {
+export function Loading({ size = 24, className = '', text }: LoadingProps): JSX.Element {
   return (
     <div className={`flex items-center justify-center space-x-2 ${className}`}>
       <Loader2 className="animate-spin" size={size} />
@@ -16,7 +16,7 @@ export function Loading({ size = 24, className = '', text }: LoadingProps) {
   )
 }
 
-export function PageLoading() {
+export function PageLoading(): JSX.Element {
   return (
     <div className="flex min-h-[400px] items-center justify-center">
       <Loading size={32} text="Loading..." />
@@ -24,7 +24,7 @@ export function PageLoading() {
   )
 }
 
-export function TableLoading() {
+export function TableLoading(): JSX.Element {
   return (
     <div className="flex min-h-[200px] items-center justify-center">
       <Loading size={24} text="Loading data..." />
@@ -32,6 +32,6 @@ export function TableLoading() {
   )
 }
 
-export function ButtonLoading() {
+export function ButtonLoading(): JSX.Element {
   return <Loading size={16} />
 }
