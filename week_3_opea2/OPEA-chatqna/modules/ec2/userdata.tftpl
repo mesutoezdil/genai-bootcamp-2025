@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Update system packages
+apt-get update
+apt-get upgrade -y
+
+# Install required packages
+apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release \
+    python3-pip \
+    git \
+    unzip
+
+# Install AWS CloudWatch agent
+curl -O https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+dpkg -i amazon-cloudwatch-agent.deb
+rm amazon-cloudwatch-agent.deb
+
+# Configure CloudWatch agent
+mkdir -p /opt/aws/amazon-cloudwatch-agent/etc/
+cat > /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json <<EOF
+{
+  "agent": {
+    "metrics_collection_interval": 60,
+    "run_as_user": "root"
+  },
+  "metrics": {
+    "metrics_collected": {
+      "cpu": {
+        "measurement": ["cpu_usage_idle", "cpu_usage_iowait", "cpu_usage_user", "cpu_usage_system"]
+      },
+      "disk": {
+        "measurement": ["used_percent", "inodes_free"],
+        "resources": ["/"]
+      },
+      "diskio": {
+        "measurement": ["io_time", "write_bytes", "read_bytes", "writes", "reads"]
+      },
+      "mem": {
+        "measurement": ["mem_used_percent"]
+      },
+      "swap": {
+        "measurement": ["swap_used_percent"]
+      }
+    }
+  }
+}
+EOF
+
+# Start CloudWatch agent
+systemctl enable amazon-cloudwatch-agent
+systemctl start amazon-cloudwatch-agent
+
+# Set up OPEA
+export HUGGINGFACE_TOKEN="${huggingface_token}"
+git clone https://github.com/OPEA/opea-chatqna.git /opt/opea
+cd /opt/opea
+git checkout ${opea_release_version}
+
+# Install Python dependencies
+pip3 install -r requirements.txt
+
+# Start the application
+nohup python3 app.py > /var/log/opea.log 2>&1 &
